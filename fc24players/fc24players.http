@@ -1,0 +1,6 @@
+@fc24players_HostAddress = http://localhost:5194
+
+GET {{fc24players_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
