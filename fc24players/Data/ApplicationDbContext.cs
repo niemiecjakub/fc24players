@@ -19,10 +19,11 @@ public class ApplicationDbContext : DbContext
     public DbSet<Card> Card { get; set; }
     public DbSet<Club> Club { get; set; }
     public DbSet<League> League { get; set; }
-    public DbSet<PlayerAltpos> PlayerAltpos { get; set; }
-    public DbSet<PlayerBodytype> PlayerBodytype { get; set; }
     public DbSet<Playstyle> Playstyle { get; set; }
     public DbSet<Position> Position { get; set; }
     public DbSet<Version> Version { get; set; }
+    // public DbSet<PlayerAltpos> PlayerAltpos { get; set; }
+    // public DbSet<PlayerBodytype> PlayerBodytype { get; set; }
+    // public DbSet<PlayerPlaystyle> PlayerPlaystyle { get; set; }
 
 }

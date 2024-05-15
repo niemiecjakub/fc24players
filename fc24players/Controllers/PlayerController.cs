@@ -1,4 +1,5 @@
 ﻿using fc24players.Interfaces;
+using fc24players.Mapper;
 using fc24players.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ public class PlayerController(IPlayerRepository playerRepository) : Controller
     public async Task<IActionResult> GetPlayers()
     {
         var players = await playerRepository.GetPlayers();
-        return Ok(players);
+        var playerDtos = players.Select(p => p.ToPlayerDto()).ToList();
+        return Ok(playerDtos);
     }
 }
