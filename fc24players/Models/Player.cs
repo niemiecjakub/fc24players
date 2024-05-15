@@ -5,5 +5,5 @@ public class Player
     public int Id { get; set; }
     public string Name { get; set; }
     public Nationality Nationality { get; set; }
-    public List<Card> Cards { get; set; }
+    public ICollection<Card> Cards { get; set; }
 }
