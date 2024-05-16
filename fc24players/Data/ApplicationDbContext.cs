@@ -14,7 +14,7 @@ public class ApplicationDbContext : DbContext
     
     public DbSet<Player> Player { get; set; }
     public DbSet<Nationality> Nationality { get; set; }
-    public DbSet<Accelerate> Accelerate { get; set; }
+    public DbSet<AcceleRate> Accelerate { get; set; }
     public DbSet<Bodytype> Bodytype { get; set; }
     public DbSet<Card> Card { get; set; }
     public DbSet<Club> Club { get; set; }

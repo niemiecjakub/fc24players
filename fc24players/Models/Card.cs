@@ -10,7 +10,7 @@ public class Card
     public Version Version { get; set; }
     public Position Position { get; set; }
     public PlayerAltpos PlayerAltpos { get; set; }
-    public Accelerate Accelerate { get; set; }
+    public AcceleRate AcceleRate { get; set; }
     public PlayerPlaystyle PlayerPlaystyle { get; set; }
     public PlayerBodytype PlayerBodytype { get; set; }
 }
