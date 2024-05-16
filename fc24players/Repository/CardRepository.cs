@@ -1,6 +1,14 @@
-﻿namespace fc24players.Repository;
+﻿using fc24players.Data;
+using fc24players.Interfaces;
+using fc24players.Models;
+using Microsoft.EntityFrameworkCore;
 
-public class CardRepository
+namespace fc24players.Repository;
+
+public class CardRepository(ApplicationDbContext context) : ICardRepository
 {
-    
+    public async Task<ICollection<Card>> GetAll()
+    {
+        return await context.Card.ToListAsync();
+    }
 }

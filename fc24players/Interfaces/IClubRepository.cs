@@ -1,6 +1,8 @@
-﻿namespace fc24players.Interfaces;
+﻿using fc24players.Models;
 
-public class IClubRepository
+namespace fc24players.Interfaces;
+
+public interface IClubRepository
 {
-    
+    Task<ICollection<Club>> GetAll();
 }

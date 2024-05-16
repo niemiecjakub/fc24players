@@ -1,6 +1,8 @@
-﻿namespace fc24players.Interfaces;
+﻿using fc24players.Models;
 
-public class IBodytypeRepository
+namespace fc24players.Interfaces;
+
+public interface IBodytypeRepository
 {
-    
+    Task<ICollection<Bodytype>> GetAll();
 }

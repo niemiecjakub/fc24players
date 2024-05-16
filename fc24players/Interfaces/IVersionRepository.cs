@@ -1,6 +1,8 @@
-﻿namespace fc24players.Interfaces;
+﻿using Version = fc24players.Models.Version;
 
-public class IVersionRepository
+namespace fc24players.Interfaces;
+
+public interface IVersionRepository
 {
-    
+    Task<ICollection<Version>> GetAll();
 }

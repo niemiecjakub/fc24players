@@ -1,6 +1,14 @@
-﻿namespace fc24players.Repository;
+﻿using fc24players.Data;
+using fc24players.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Version = fc24players.Models.Version;
 
-public class VersionRepository
+namespace fc24players.Repository;
+
+public class VersionRepository(ApplicationDbContext context) : IVersionRepository
 {
-    
+    public async Task<ICollection<Version>> GetAll()
+    {
+        return await context.Version.ToListAsync();
+    }
 }

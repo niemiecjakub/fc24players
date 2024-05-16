@@ -1,6 +1,8 @@
-﻿namespace fc24players.Interfaces;
+﻿using fc24players.Models;
 
-public class IAcceleRateRepository
+namespace fc24players.Interfaces;
+
+public interface IAcceleRateRepository
 {
-    
+    Task<ICollection<AcceleRate>> GetAll();
 }

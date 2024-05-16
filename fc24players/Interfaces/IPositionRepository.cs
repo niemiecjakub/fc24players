@@ -1,6 +1,8 @@
-﻿namespace fc24players.Interfaces;
+﻿using fc24players.Models;
 
-public class IPositionRepository
+namespace fc24players.Interfaces;
+
+public interface IPositionRepository
 {
-    
+    Task<ICollection<Position>> GetAll();
 }

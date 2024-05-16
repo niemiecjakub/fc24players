@@ -1,5 +1,6 @@
 using fc24players.Data;
 using fc24players.Interfaces;
+using fc24players.Models;
 using fc24players.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+builder.Services.AddScoped<IAcceleRateRepository, AcceleRateRepository>();
+builder.Services.AddScoped<IBodytypeRepository, BodytypeRepository>();
+builder.Services.AddScoped<ICardRepository, CardRepository>();
+builder.Services.AddScoped<IClubRepository, ClubRepository>();
+builder.Services.AddScoped<ILeagueRepository, LeagueRepository>();
+builder.Services.AddScoped<INationalityRepository, NationalityRepository>();
+builder.Services.AddScoped<IPlaystyleRepository, PlaystyleRepository>();
+builder.Services.AddScoped<IPositionRepository, PositionRepository>();
+builder.Services.AddScoped<IVersionRepository, VersionRepository>();
 
 var app = builder.Build();
 

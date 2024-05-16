@@ -1,7 +1,5 @@
 ﻿using fc24csvToDb.Csv;
 using fc24csvToDb.Csv.Update;
-using fc24players.Models;
-
 
 public class Program
 {

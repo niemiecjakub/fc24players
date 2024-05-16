@@ -1,6 +1,8 @@
-﻿namespace fc24players.Interfaces;
+﻿using fc24players.Models;
 
-public class IPlaystyleRepository
+namespace fc24players.Interfaces;
+
+public interface IPlaystyleRepository
 {
-    
+    Task<ICollection<Playstyle>> GetAll();
 }
