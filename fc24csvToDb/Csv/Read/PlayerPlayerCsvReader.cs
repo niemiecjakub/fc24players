@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
+using fc24csvToDb.Helpers;
 using fc24players.Models;
 using Version = fc24players.Models.Version;
 
@@ -37,7 +38,7 @@ public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
 
                 yield return new AcceleRate()
                 {
-                    Name = acceleRate
+                    Name = acceleRate.Trim()
                 };
             }
         }
@@ -86,7 +87,7 @@ public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
 
                 yield return new Version()
                 {
-                    Name = version
+                    Name = version.Trim()
                 };
             }
         }
@@ -237,7 +238,111 @@ public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
 
     public IEnumerable<Card> ReadCard()
     {
-        //TODO
-        throw new NotImplementedException();
+        using (var reader = CreateCsvReader())
+        {
+            while (reader.Read())
+            {
+                var id = reader.GetField<int>("ID");
+                var playerName = reader.GetField<string>("Name");
+                var nationality = reader.GetField<string>("Nationality");
+                var club = reader.GetField<string>("Club");
+                var version = reader.GetField<string>("Version");
+                var position = reader.GetField<string>("Position");
+                var acceleRate = reader.GetField<string>("AcceleRATE");
+                var league = reader.GetField<string>("League");
+
+                
+                yield return new Card()
+                    {
+                        Id = id,
+                        Player = new Player()
+                        {
+                            Name = playerName
+                        },
+                        Nationality = new Nationality()
+                        {
+                            Name = nationality.Trim()
+                        },
+                        Club = new Club()
+                        {
+                            Name = club.Trim()
+                        },
+                        Version = new Version()
+                        {
+                            Name = version.Trim()
+                        },
+                        Position = new Position()
+                        {
+                            Name = position.Trim()
+                        },
+                        AcceleRate = new AcceleRate()
+                        {
+                            Name = acceleRate.Trim()
+                        },
+                        League = new League()
+                        {
+                          Name  = league.Trim()
+                        },
+                        OverallRating = reader.GetField<int>("Overall Rating"),
+                        DefWR = reader.GetField<string>("Def W/R"),
+                        AttWR = reader.GetField<string>("Att W/R"),
+                        Link = reader.GetField<string>("Futwiz Link"),
+                        Foot = reader.GetField<string>("Foot"),
+                        Height = reader.GetField<string>("Height").GetHeightInCm(),
+                        Weight = reader.GetField<string>("Weight").StripUnits(),
+                        WeakFoot = reader.GetField<int>("Weak Foot"),
+                        SkillMoves = reader.GetField<int>("Skill Moves"),
+                        Acceleration = reader.GetField<int>("Acceleration"),
+                        Agression = reader.GetField<int>("Aggression"),
+                        Age = reader.GetField<int>("Age"),
+                        Agility = reader.GetField<int>("Agility"),
+                        Balance = reader.GetField<int>("Balance"),
+                        BallControl = reader.GetField<int>("Ball Control"),
+                        Composure = reader.GetField<int>("Composure"),
+                        Dribbling = reader.GetField<int>("Dribbling"),
+                        Finishing = reader.GetField<int>("Finishing"),
+                        Jumping = reader.GetField<int>("Jumping"),
+                        LongShots = reader.GetField<int>("Long Shots"),
+                        Penalties = reader.GetField<int>("Penalties"),
+                        Positioning = reader.GetField<int>("Positioning"),
+                        Reactions = reader.GetField<int>("Reactions"),
+                        ShotPower = reader.GetField<int>("Shot Power"),
+                        SlideTackle = reader.GetField<int?>("Slide Tackle"),
+                        SprintSpeed = reader.GetField<int>("Sprint Speed"),
+                        Stamina = reader.GetField<int>("Stamina"),
+                        Strength = reader.GetField<int>("Strength"),
+                        Volleys = reader.GetField<int>("Volleys"),
+                        Added = reader.GetField<DateTime>("Added"),
+                        Price = reader.GetField<int?>("Price"),
+                        Crossing = reader.GetField<int?>("Crossing"),
+                        Curve = reader.GetField<int?>("Curve"),
+                        DEF = reader.GetField<int?>("DEF"),
+                        DRI = reader.GetField<int?>("DRI"),
+                        DefAwareness = reader.GetField<int?>("Def Awareness"),
+                        FKAcc = reader.GetField<int?>("FK Acc"),
+                        HeadingAcc = reader.GetField<int?>("Heading Acc"),
+                        Interceptions = reader.GetField<int?>("Interceptions"),
+                        LongPass = reader.GetField<int?>("Long Pass"),
+                        PAC = reader.GetField<int?>("PAC"),
+                        PAS = reader.GetField<int?>("PAS"),
+                        PHY = reader.GetField<int?>("PHY"),
+                        SHO = reader.GetField<int?>("SHO"),
+                        ShortPass = reader.GetField<int?>("Short Pass"),
+                        StandTackle = reader.GetField<int?>("Stand Tackle"),
+                        Vision = reader.GetField<int?>("Vision"),
+                        DIV = reader.GetField<int?>("DIV"),
+                        GKDiving = reader.GetField<int?>("GK Diving"),
+                        GKHandling = reader.GetField<int?>("GK Handling"),
+                        GKKicking = reader.GetField<int?>("GK Kicking"),
+                        GKPos = reader.GetField<int?>("GK Pos"),
+                        GKReflexes = reader.GetField<int?>("GK Reflexes"),
+                        HAN = reader.GetField<int?>("HAN"),
+                        KIC = reader.GetField<int?>("KIC"),
+                        POS = reader.GetField<int?>("POS"),
+                        REF = reader.GetField<int?>("REF"),
+                        SPD = reader.GetField<int?>("SPD"),
+                    };
+            }
+        }
     }
 }

@@ -35,7 +35,6 @@ public class Card
     public  int Positioning{ get; set; }
     public  int Reactions{ get; set; }
     public  int ShotPower{ get; set; }
-    public  int SlideTackle{ get; set; }
     public  int SprintSpeed{ get; set; }
     public  int Stamina{ get; set; }
     public  int Strength{ get; set; }
@@ -43,6 +42,7 @@ public class Card
     public  DateTime Added{ get; set; }
     
     
+    public  int? SlideTackle{ get; set; }
     public  int? Price{ get; set; }
     public  int? Crossing{ get; set; }
     public  int? Curve{ get; set; }

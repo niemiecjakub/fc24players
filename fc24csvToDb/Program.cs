@@ -21,6 +21,6 @@ public class Program
         
         PlayerPlayerCsvReader playerCsvReader = new PlayerPlayerCsvReader(csvFilePath);
         PlayerCsvDbUpdate playerCsvDbUpdate = new PlayerCsvDbUpdate(connectionString, playerCsvReader);
-        playerCsvDbUpdate.UpdatePlayer();
+        playerCsvDbUpdate.UpdateCard();
     }
 }
