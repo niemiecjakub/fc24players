@@ -8,24 +8,16 @@ namespace fc24players.Repository;
 
 public class PlayerRepository(ApplicationDbContext context) : IPlayerRepository
 {
-    public async Task<ICollection<Player>> GetAll(PlayerQueryObject playerQuery)
+    public async Task<ICollection<Player>> GetAll(PaginationQueryObject paginationQuery)
     {
         var players = context.Player
             .Include(p => p.Nationality)
             .AsQueryable();
         
-        Console.WriteLine(playerQuery.Nationality);
-        
-        if (!string.IsNullOrEmpty(playerQuery.Nationality))
-        {
-            players = players.Where(p => p.Nationality.Name.ToUpper().Equals(playerQuery.Nationality.ToUpper()));
-        }
-        
-        var skipNumber = (playerQuery.PageNumber - 1) * playerQuery.PageSize;
-        return await players.Skip(skipNumber).Take(playerQuery.PageSize).ToListAsync();
+        var skipNumber = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
+        return await players.Skip(skipNumber).Take(paginationQuery.PageSize).ToListAsync();
     }
-
-
+    
     public async Task<Player> GetByName()
     {
         throw new NotImplementedException();

@@ -4,5 +4,5 @@ public class Playstyle
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public ICollection<Card> Cards { get; set; }
+    public ICollection<CardPlaystyle> Cards { get; set; }
 }

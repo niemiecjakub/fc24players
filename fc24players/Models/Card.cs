@@ -10,38 +10,34 @@ public class Card
     public Version Version { get; set; }
     public Position Position { get; set; }
     public AcceleRate? AcceleRate { get; set; }
-    
-    public  int OverallRating{ get; set; }
-    public string DefWR{ get; set; }
-    public string AttWR { get; set; }
-    public string Link { get; set; }
-    public  string Foot{ get; set; }
-    public  int Height{ get; set; }
-    public  int Weight{ get; set; }
-    public  int WeakFoot{ get; set; }
-    public  int SkillMoves{ get; set; }
-    public  int Acceleration{ get; set; }
-    public  int Agression{ get; set; }
-    public  int Age{ get; set; }
-    public  int Agility{ get; set; }
-    public  int Balance{ get; set; }
-    public  int BallControl{ get; set; }
-    public  int Composure{ get; set; }
-    public  int Dribbling { get; set; }
-    public  int Finishing { get; set; }
-    public  int Jumping{ get; set; }
-    public  int LongShots{ get; set; }
-    public  int Penalties{ get; set; }
-    public  int Positioning{ get; set; }
-    public  int Reactions{ get; set; }
-    public  int ShotPower{ get; set; }
-    public  int SprintSpeed{ get; set; }
-    public  int Stamina{ get; set; }
-    public  int Strength{ get; set; }
-    public  int Volleys{ get; set; }
-    public  DateTime Added{ get; set; }
-    
-    
+    public  int? OverallRating{ get; set; }
+    public string? DefWR{ get; set; }
+    public string? AttWR { get; set; }
+    public string? Link { get; set; }
+    public  string? Foot{ get; set; }
+    public  int? Height{ get; set; }
+    public  int? Weight{ get; set; }
+    public  int? WeakFoot{ get; set; }
+    public  int? SkillMoves{ get; set; }
+    public  int? Acceleration{ get; set; }
+    public  int? Agression{ get; set; }
+    public  int? Age{ get; set; }
+    public  int? Agility{ get; set; }
+    public  int? Balance{ get; set; }
+    public  int? BallControl{ get; set; }
+    public  int? Composure{ get; set; }
+    public  int? Dribbling { get; set; }
+    public  int? Finishing { get; set; }
+    public  int? Jumping{ get; set; }
+    public  int? LongShots{ get; set; }
+    public  int? Penalties{ get; set; }
+    public  int? Positioning{ get; set; }
+    public  int? Reactions{ get; set; }
+    public  int? ShotPower{ get; set; }
+    public  int? SprintSpeed{ get; set; }
+    public  int? Stamina{ get; set; }
+    public  int? Strength{ get; set; }
+    public  int? Volleys{ get; set; }
     public  int? SlideTackle{ get; set; }
     public  int? Price{ get; set; }
     public  int? Crossing{ get; set; }
@@ -71,6 +67,7 @@ public class Card
     public  int? POS{ get; set; }
     public  int? REF{ get; set; }
     public  int? SPD{ get; set; }
+    public  DateTime? Added{ get; set; }
     
     // public PlayerAltpos PlayerAltpos { get; set; }
     // public PlayerPlaystyle PlayerPlaystyle { get; set; }

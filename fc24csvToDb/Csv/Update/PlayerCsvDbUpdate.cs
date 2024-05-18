@@ -341,26 +341,26 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
     {
         // var insertCardSql =
         //     @"INSERT INTO Card(Id, PlayerId, NationalityId, ClubId, LeagueId,VersionId, PositionId, AcceleRateId, 
-        //                   OverallRating, DefWR, AttWR, Link, Foot, Height, Weight, WeakFoot, SkillMoves, Acceleration, 
-        //                   Agression, Age, Agility, Balance, BallControl, Composure, Dribbling, Finishing, Jumping, 
-        //                   LongShots, Penalties, Positioning, Reactions, ShotPower, SlideTackle, SprintSpeed, Stamina, 
-        //                   Strength, Volleys, Price, Crossing, Curve, DEF, DRI, DefAwareness, FKAcc, HeadingAcc, 
-        //                   Interceptions, LongPass, PAC, PAS, PHY, SHO, ShortPass, StandTackle, Vision, DIV, GKDiving, 
-        //                   GKHandling, GKKicking, GKPos, GKReflexes, HAN, KIC, POS, REF, SPD) 
+        //                   OverallRating, DefWR, AttWR, Link, Foot, Height, Weight, WeakFoot) 
         //                   VALUES (@Id, @PlayerId, @NationalityId, @ClubId, @LeagueId, @VersionId, @PositionId, @AcceleRateId, 
-        //                   @OverallRating, @DefWR, @AttWR, @Link, @Foot, @Height, @Weight, @WeakFoot, @SkillMoves, 
-        //                   @Acceleration, @Agression, @Age, @Agility, @Balance, @BallControl, @Composure, @Dribbling, 
-        //                   @Finishing, @Jumping, @LongShots, @Penalties, @Positioning, @Reactions, @ShotPower, 
-        //                   @SlideTackle, @SprintSpeed, @Stamina, @Strength, @Volleys, @Price, @Crossing, @Curve, 
-        //                   @DEF, @DRI, @DefAwareness, @FKAcc, @HeadingAcc, @Interceptions, @LongPass, @PAC, @PAS, @PHY, 
-        //                   @SHO, @ShortPass, @StandTackle, @Vision, @DIV, @GKDiving, @GKHandling, @GKKicking, @GKPos, 
-        //                   @GKReflexes, @HAN, @KIC, @POS, @REF, @SPD)";
-
+        //                   @OverallRating, @DefWR, @AttWR, @Link, @Foot, @Height, @Weight, @WeakFoot)";
+        
         var insertCardSql =
             @"INSERT INTO Card(Id, PlayerId, NationalityId, ClubId, LeagueId,VersionId, PositionId, AcceleRateId, 
-                          OverallRating, DefWR, AttWR, Link, Foot, Height, Weight) 
+                          OverallRating, DefWR, AttWR, Link, Foot, Height, Weight, WeakFoot, SkillMoves, Acceleration, 
+                          Agression, Age, Agility, Balance, BallControl, Composure, Dribbling, Finishing, Jumping, 
+                          LongShots, Penalties, Positioning, Reactions, ShotPower, SlideTackle, SprintSpeed, Stamina, 
+                          Strength, Volleys, Price, Crossing, Curve, DEF, DRI, DefAwareness, FKAcc, HeadingAcc, 
+                          Interceptions, LongPass, PAC, PAS, PHY, SHO, ShortPass, StandTackle, Vision, DIV, GKDiving, 
+                          GKHandling, GKKicking, GKPos, GKReflexes, HAN, KIC, POS, REF, SPD) 
                           VALUES (@Id, @PlayerId, @NationalityId, @ClubId, @LeagueId, @VersionId, @PositionId, @AcceleRateId, 
-                          @OverallRating, @DefWR, @AttWR, @Link, @Foot, @Height, @Weight)";
+                          @OverallRating, @DefWR, @AttWR, @Link, @Foot, @Height, @Weight, @WeakFoot, @SkillMoves, 
+                          @Acceleration, @Agression, @Age, @Agility, @Balance, @BallControl, @Composure, @Dribbling, 
+                          @Finishing, @Jumping, @LongShots, @Penalties, @Positioning, @Reactions, @ShotPower, 
+                          @SlideTackle, @SprintSpeed, @Stamina, @Strength, @Volleys, @Price, @Crossing, @Curve, 
+                          @DEF, @DRI, @DefAwareness, @FKAcc, @HeadingAcc, @Interceptions, @LongPass, @PAC, @PAS, @PHY, 
+                          @SHO, @ShortPass, @StandTackle, @Vision, @DIV, @GKDiving, @GKHandling, @GKKicking, @GKPos, 
+                          @GKReflexes, @HAN, @KIC, @POS, @REF, @SPD)";
         
         var checkCardExistenceSql = "SELECT COUNT(*) FROM Card WHERE Id = @Id";
         var selectEntitySql = "SELECT Id FROM {0} WHERE Name = @name";
@@ -368,68 +368,66 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
         try
         {
             using (var connection = new SqliteConnection(connectionString))
-            {
-                connection.Open();
+{
+    connection.Open();
 
-                foreach (var card in playerCsvReader.ReadCard())
-                {
-                    using var checkCommand = new SqliteCommand(checkCardExistenceSql, connection);
-                    checkCommand.Parameters.AddWithValue("@Id", card.Id);
-                    
-                    var exists = (long)checkCommand.ExecuteScalar() > 0;
-                    
-                    if (!exists)
-                    {
-                        var playerId = GetEntityId(connection, "Player", card.Player.Name);
-                        var nationalityId = GetEntityId(connection, "Nationality", card.Nationality.Name);
-                        var clubId = card.Club != null ? GetEntityId(connection, "Club", card.Club.Name) : null;
-                        var versionId = GetEntityId(connection, "Version", card.Version.Name);
-                        var positionId = GetEntityId(connection, "Position", card.Position.Name);
-                        var acceleRateId = card.AcceleRate != null
-                            ? GetEntityId(connection, "AcceleRate", card.AcceleRate.Name)
-                            : null;
-                        var leagueId = GetEntityId(connection, "League", card.League.Name);
-                    
-                        using var insertCommand = new SqliteCommand(insertCardSql, connection);
-                        insertCommand.Parameters.AddWithValue("@Id", card.Id);
-                        insertCommand.Parameters.AddWithValue("@PlayerId", playerId);
-                        insertCommand.Parameters.AddWithValue("@NationalityId", nationalityId);
-                        insertCommand.Parameters.AddWithValue("@ClubId", clubId.HasValue ? clubId.Value : DBNull.Value);
-                        insertCommand.Parameters.AddWithValue("@LeagueId", leagueId.Value);
-                        insertCommand.Parameters.AddWithValue("@VersionId", versionId);
-                        insertCommand.Parameters.AddWithValue("@PositionId", positionId);
-                        insertCommand.Parameters.AddWithValue("@AcceleRateId", acceleRateId.HasValue ? acceleRateId.Value : DBNull.Value);
-                        insertCommand.Parameters.AddWithValue("@OverallRating", card.OverallRating);
-                        insertCommand.Parameters.AddWithValue("@DefWR", card.DefWR);
-                        insertCommand.Parameters.AddWithValue("@AttWR", card.AttWR);
-                        insertCommand.Parameters.AddWithValue("@Link", card.Link);
-                        insertCommand.Parameters.AddWithValue("@Foot", card.Foot);
-                        insertCommand.Parameters.AddWithValue("@Height", card.Height);
-                        insertCommand.Parameters.AddWithValue("@Weight", card.Weight);
-                        insertCommand.Parameters.AddWithValue("@WeakFoot", card.WeakFoot);
-                        insertCommand.Parameters.AddWithValue("@SkillMoves", card.SkillMoves);
-                        insertCommand.Parameters.AddWithValue("@Acceleration", card.Acceleration);
-                        insertCommand.Parameters.AddWithValue("@Agression", card.Agression);
-                        insertCommand.Parameters.AddWithValue("@Age", card.Age);
-                        insertCommand.Parameters.AddWithValue("@Agility", card.Agility);
-                        insertCommand.Parameters.AddWithValue("@Balance", card.Balance);
-                        insertCommand.Parameters.AddWithValue("@BallControl", card.BallControl);
-                        insertCommand.Parameters.AddWithValue("@Composure", card.Composure);
-                        insertCommand.Parameters.AddWithValue("@Dribbling", card.Dribbling);
-                        insertCommand.Parameters.AddWithValue("@Finishing", card.Finishing);
-                        insertCommand.Parameters.AddWithValue("@Jumping", card.Jumping);
-                        insertCommand.Parameters.AddWithValue("@LongShots", card.LongShots);
-                        insertCommand.Parameters.AddWithValue("@Penalties", card.Penalties);
-                        insertCommand.Parameters.AddWithValue("@Positioning", card.Positioning);
-                        insertCommand.Parameters.AddWithValue("@Reactions", card.Reactions);
-                        insertCommand.Parameters.AddWithValue("@ShotPower", card.ShotPower);
-                        insertCommand.Parameters.AddWithValue("@SlideTackle", card.SlideTackle);
-                        insertCommand.Parameters.AddWithValue("@SprintSpeed", card.SprintSpeed);
-                        insertCommand.Parameters.AddWithValue("@Stamina", card.Stamina);
-                        insertCommand.Parameters.AddWithValue("@Strength", card.Strength);
-                        insertCommand.Parameters.AddWithValue("@Volleys", card.Volleys);
-                        insertCommand.Parameters.AddWithValue("@Added", card.Added);
-                        insertCommand.Parameters.AddWithValue("@Price",
+    foreach (var card in playerCsvReader.ReadCard())
+    {
+        using var checkCommand = new SqliteCommand(checkCardExistenceSql, connection);
+        checkCommand.Parameters.AddWithValue("@Id", card.Id);
+        
+        var exists = (long)checkCommand.ExecuteScalar() > 0;
+        
+        if (!exists)
+        {
+            var playerId = GetEntityId(connection, "Player", card.Player.Name);
+            var nationalityId = GetEntityId(connection, "Nationality", card.Nationality.Name);
+            var clubId = card.Club != null ? GetEntityId(connection, "Club", card.Club.Name) : (object)DBNull.Value;
+            var versionId = GetEntityId(connection, "Version", card.Version.Name);
+            var positionId = GetEntityId(connection, "Position", card.Position.Name);
+            var acceleRateId = card.AcceleRate != null ? GetEntityId(connection, "AcceleRate", card.AcceleRate.Name) : (object)DBNull.Value;
+            var leagueId = GetEntityId(connection, "League", card.League.Name);
+        
+            using var insertCommand = new SqliteCommand(insertCardSql, connection);
+            insertCommand.Parameters.AddWithValue("@Id", card.Id);
+            insertCommand.Parameters.AddWithValue("@PlayerId", playerId);
+            insertCommand.Parameters.AddWithValue("@NationalityId", nationalityId);
+            insertCommand.Parameters.AddWithValue("@ClubId", clubId ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@LeagueId", leagueId);
+            insertCommand.Parameters.AddWithValue("@VersionId", versionId);
+            insertCommand.Parameters.AddWithValue("@PositionId", positionId);
+            insertCommand.Parameters.AddWithValue("@AcceleRateId", acceleRateId ?? DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@OverallRating", card.OverallRating);
+            insertCommand.Parameters.AddWithValue("@DefWR", card.DefWR );
+            insertCommand.Parameters.AddWithValue("@AttWR", card.AttWR );
+            insertCommand.Parameters.AddWithValue("@Link", card.Link);
+            insertCommand.Parameters.AddWithValue("@Foot", card.Foot);
+            insertCommand.Parameters.AddWithValue("@Height", card.Height);
+            insertCommand.Parameters.AddWithValue("@Weight", card.Weight);
+            insertCommand.Parameters.AddWithValue("@WeakFoot", card.WeakFoot);
+            insertCommand.Parameters.AddWithValue("@SkillMoves", card.SkillMoves);
+            insertCommand.Parameters.AddWithValue("@Acceleration", card.Acceleration);
+            insertCommand.Parameters.AddWithValue("@Agression", card.Agression);
+            insertCommand.Parameters.AddWithValue("@Age", card.Age);
+            insertCommand.Parameters.AddWithValue("@Agility", card.Agility.HasValue ? card.Agility.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Balance", card.Balance.HasValue ? card.Balance.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@BallControl", card.BallControl.HasValue ? card.BallControl.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Composure", card.Composure.HasValue ? card.Composure.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Dribbling", card.Dribbling.HasValue ? card.Dribbling.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Finishing", card.Finishing.HasValue ? card.Finishing.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Jumping", card.Jumping.HasValue ? card.Jumping.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@LongShots", card.LongShots.HasValue ? card.LongShots.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Penalties", card.Penalties.HasValue ? card.Penalties.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Positioning", card.Positioning.HasValue ? card.Positioning.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Reactions", card.Reactions.HasValue ? card.Reactions.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@ShotPower", card.ShotPower.HasValue ? card.ShotPower.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@SlideTackle", card.SlideTackle.HasValue ? card.SlideTackle.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@SprintSpeed", card.SprintSpeed.HasValue ? card.SprintSpeed.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Stamina", card.Stamina.HasValue ? card.Stamina.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Strength", card.Strength.HasValue ? card.Strength.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Volleys", card.Volleys.HasValue ? card.Volleys.Value : DBNull.Value);
+            insertCommand.Parameters.AddWithValue("@Added", card.Added);
+                                insertCommand.Parameters.AddWithValue("@Price",
                             card.Price.HasValue ? card.Price.Value : DBNull.Value);
                         insertCommand.Parameters.AddWithValue("@Crossing",
                             card.Crossing.HasValue ? card.Crossing.Value : DBNull.Value);
@@ -485,11 +483,17 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
                             card.REF.HasValue ? card.REF.Value : DBNull.Value);
                         insertCommand.Parameters.AddWithValue("@SPD",
                             card.SPD.HasValue ? card.SPD.Value : DBNull.Value);
-                        
-                        insertCommand.ExecuteNonQuery();
-                    }
-                }
+            // Print all parameter values before executing the command
+            Console.WriteLine("Inserting card with the following parameters:");
+            foreach (SqliteParameter parameter in insertCommand.Parameters)
+            {
+                Console.WriteLine($"{parameter.ParameterName} = {parameter.Value}");
             }
+           
+            insertCommand.ExecuteNonQuery();
+        }
+    }
+}
         }
         catch (SqliteException ex)
         {

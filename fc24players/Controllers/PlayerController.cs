@@ -12,9 +12,9 @@ public class PlayerController(IPlayerRepository playerRepository) : Controller
 {
     [HttpGet("all")]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Player>))]
-    public async Task<IActionResult> GetAll([FromQuery] PlayerQueryObject playerQuery)
+    public async Task<IActionResult> GetAll([FromQuery] PaginationQueryObject paginationQuery)
     {
-        var players = await playerRepository.GetAll(playerQuery);
+        var players = await playerRepository.GetAll(paginationQuery);
         var playerDtos = players.Select(p => p.ToPlayerDto()).ToList();
         return Ok(playerDtos);
     }

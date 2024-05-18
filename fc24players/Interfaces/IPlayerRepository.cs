@@ -5,6 +5,6 @@ namespace fc24players.Interfaces;
 
 public interface IPlayerRepository
 {
-    Task<ICollection<Player>> GetAll(PlayerQueryObject playerQuery);
+    Task<ICollection<Player>> GetAll(PaginationQueryObject paginationQuery);
     Task<Player> GetByName();
 }
