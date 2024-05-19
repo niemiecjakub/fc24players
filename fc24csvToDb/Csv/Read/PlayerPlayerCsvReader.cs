@@ -284,8 +284,8 @@ public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
                           Name  = league.Trim()
                         },
                         OverallRating = reader.GetField<int?>("Overall Rating"),
-                        DefWR = reader.GetField<string?>("Def W/R"),
-                        AttWR = reader.GetField<string?>("Att W/R"),
+                        DefWr = reader.GetField<string?>("Def W/R"),
+                        AttWr = reader.GetField<string?>("Att W/R"),
                         Link = reader.GetField<string?>("Futwiz Link"),
                         Foot = reader.GetField<string?>("Foot"),
                         Height = reader.GetField<string?>("Height").GetHeightInCm(),

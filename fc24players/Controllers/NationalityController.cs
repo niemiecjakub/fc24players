@@ -1,4 +1,5 @@
 ﻿using fc24players.Interfaces;
+using fc24players.Mapper;
 using fc24players.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,22 @@ public class NationalityController(INationalityRepository nationalityRepository)
     public async Task<IActionResult> GetAll()
     {
         var nationalities = await nationalityRepository.GetAll();
-        return Ok(nationalities);
+        var nationalitiesDto = nationalities.Select(n => n.ToNationalityDto()).ToList();
+        return Ok(nationalitiesDto);
+    }
+    
+    [HttpGet("{name}")]
+    [ProducesResponseType(200, Type = typeof(Nationality))]
+    [ProducesResponseType(204)]
+    public async Task<IActionResult> GetByName(string name)
+    {
+        var nationality = await nationalityRepository.GetByName(name);
+        if (nationality == null)
+        {
+            return NoContent();
+        }
+
+        var nationalityDto = nationality.ToNationalityDto();
+        return Ok(nationalityDto);
     }
 }

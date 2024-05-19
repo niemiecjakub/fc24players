@@ -8,12 +8,15 @@ namespace fc24players.Repository;
 
 public class PlayerRepository(ApplicationDbContext context) : IPlayerRepository
 {
-    public async Task<ICollection<Player>> GetAll(PaginationQueryObject paginationQuery)
+    public async Task<ICollection<Player>> GetAll(PaginationQueryObject paginationQuery, string nationality)
     {
         var players = context.Player
             .Include(p => p.Nationality)
             .AsQueryable();
-        
+        if (nationality != null)
+        {
+            players = players.Where(p => p.Nationality.Name.ToUpper().Trim().Equals(nationality.ToUpper().Trim()));
+        }
         var skipNumber = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
         return await players.Skip(skipNumber).Take(paginationQuery.PageSize).ToListAsync();
     }

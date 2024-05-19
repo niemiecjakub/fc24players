@@ -7,12 +7,12 @@ public class Card
     public Nationality Nationality { get; set; }
     public League League { get; set; }
     public Club? Club { get; set; }
-    public Version Version { get; set; }
-    public Position Position { get; set; }
+    public Version? Version { get; set; }
+    public Position? Position { get; set; }
     public AcceleRate? AcceleRate { get; set; }
     public  int? OverallRating{ get; set; }
-    public string? DefWR{ get; set; }
-    public string? AttWR { get; set; }
+    public string? DefWr{ get; set; }
+    public string? AttWr { get; set; }
     public string? Link { get; set; }
     public  string? Foot{ get; set; }
     public  int? Height{ get; set; }

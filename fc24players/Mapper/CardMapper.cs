@@ -10,6 +10,13 @@ public static class CardMapper
         return new CardDto()
         {
             Id = card.Id,
+            Player = card.Player.ToPlayerDto(),
+            Version = card.Version.Name,
+            Club = card.Club.Name,
+            Position = card.Position.Name,
+            Age = card.Age,
+            OverallRating = card.OverallRating,
+            Price = card.Price,
             Link = card.Link
         };
     }

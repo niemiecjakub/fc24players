@@ -12,9 +12,9 @@ public class CardController(ICardRepository cardRepository) : Controller
 {
     [HttpGet("all")]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Card>))]
-    public async Task<IActionResult> GetAll([FromQuery] PaginationQueryObject paginationQueryObject)
+    public async Task<IActionResult> GetAll([FromQuery] PaginationQueryObject paginationQuery, [FromQuery] CardQueryObject cardQuery)
     {
-        var cards = await cardRepository.GetAll(paginationQueryObject);
+        var cards = await cardRepository.GetAll(paginationQuery, cardQuery);
         var cardsDto = cards.Select(c => c.ToCardDto()).ToList();
         return Ok(cardsDto);
     }

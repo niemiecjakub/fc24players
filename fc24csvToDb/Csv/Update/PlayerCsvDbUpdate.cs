@@ -398,8 +398,8 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
             insertCommand.Parameters.AddWithValue("@PositionId", positionId);
             insertCommand.Parameters.AddWithValue("@AcceleRateId", acceleRateId ?? DBNull.Value);
             insertCommand.Parameters.AddWithValue("@OverallRating", card.OverallRating);
-            insertCommand.Parameters.AddWithValue("@DefWR", card.DefWR );
-            insertCommand.Parameters.AddWithValue("@AttWR", card.AttWR );
+            insertCommand.Parameters.AddWithValue("@DefWR", card.DefWr );
+            insertCommand.Parameters.AddWithValue("@AttWR", card.AttWr );
             insertCommand.Parameters.AddWithValue("@Link", card.Link);
             insertCommand.Parameters.AddWithValue("@Foot", card.Foot);
             insertCommand.Parameters.AddWithValue("@Height", card.Height);

@@ -9,6 +9,11 @@ public class NationalityRepository(ApplicationDbContext context) : INationalityR
 {
     public async Task<ICollection<Nationality>> GetAll()
     {
-        return await context.Nationality.ToListAsync();
+        return await context.Nationality.Include(n => n.Players).ToListAsync();
+    }
+    
+    public async Task<Nationality?> GetByName(string name)
+    {
+        return await context.Nationality.Include(n => n.Players).FirstOrDefaultAsync(n => n.Name.ToUpper().Trim().Equals(name.ToUpper().Trim()));
     }
 }
