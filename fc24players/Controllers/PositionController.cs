@@ -15,4 +15,12 @@ public class PositionController(IPositionRepository positionRepository) : Contro
         var positions = await positionRepository.GetAll();
         return Ok(positions);
     }
+    
+    [HttpGet("all/names")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<string>))]
+    public async Task<IActionResult> GetAllNames()
+    {
+        var positions = await positionRepository.GetAllNames();
+        return Ok(positions);
+    }
 }

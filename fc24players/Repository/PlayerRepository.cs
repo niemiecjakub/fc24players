@@ -20,7 +20,12 @@ public class PlayerRepository(ApplicationDbContext context) : IPlayerRepository
         var skipNumber = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
         return await players.Skip(skipNumber).Take(paginationQuery.PageSize).ToListAsync();
     }
-    
+
+    public async Task<ICollection<string>> GetAllNames()
+    {
+        return await context.Player.Select(p => p.Name).ToListAsync();
+    }
+
     public async Task<Player> GetByName()
     {
         throw new NotImplementedException();

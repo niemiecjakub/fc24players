@@ -10,7 +10,8 @@ public class CardRepository(ApplicationDbContext context) : ICardRepository
 {
     public async Task<ICollection<Card>> GetAll(PaginationQueryObject paginationQuery, CardQueryObject cardQuery)
     {
-        var cards = context.Card.Include(c => c.Version)
+        var cards = context.Card
+            .Include(c => c.Version)
             .Include(c => c.Club)
             .Include(c => c.Position)
             .Include(c => c.Player)
@@ -46,5 +47,17 @@ public class CardRepository(ApplicationDbContext context) : ICardRepository
         }
         var skipNumber = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
         return await cards.Skip(skipNumber).Take(paginationQuery.PageSize).ToListAsync();
+    }
+
+    public async Task<ICollection<Card>> GetByAcceleRateName(string name)
+    {
+        return await context.Card
+            .Include(c => c.Version)
+            .Include(c => c.Club)
+            .Include(c => c.Position)
+            .Include(c => c.Player)
+            .ThenInclude(p => p.Nationality)
+            .Where(c => c.AcceleRate.Name.Equals(name))
+            .ToListAsync();
     }
 }

@@ -6,5 +6,6 @@ namespace fc24players.Interfaces;
 public interface INationalityRepository
 {
     Task<ICollection<Nationality>> GetAll();
+    Task<ICollection<string>> GetAllNames();
     Task<Nationality?> GetByName(string name);
 }

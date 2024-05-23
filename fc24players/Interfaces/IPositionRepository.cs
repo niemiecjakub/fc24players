@@ -5,4 +5,5 @@ namespace fc24players.Interfaces;
 public interface IPositionRepository
 {
     Task<ICollection<Position>> GetAll();
+    Task<ICollection<string>> GetAllNames();
 }

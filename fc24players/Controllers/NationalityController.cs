@@ -18,6 +18,14 @@ public class NationalityController(INationalityRepository nationalityRepository)
         return Ok(nationalitiesDto);
     }
     
+    [HttpGet("all/names")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<string>))]
+    public async Task<IActionResult> GetAllNames()
+    {
+        var nationalities = await nationalityRepository.GetAllNames();
+        return Ok(nationalities);
+    }
+    
     [HttpGet("{name}")]
     [ProducesResponseType(200, Type = typeof(Nationality))]
     [ProducesResponseType(204)]

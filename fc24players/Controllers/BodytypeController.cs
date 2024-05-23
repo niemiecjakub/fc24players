@@ -15,4 +15,12 @@ public class BodytypeController(IBodytypeRepository bodytypeRepository) : Contro
         var bodytypes = await bodytypeRepository.GetAll();
         return Ok(bodytypes);
     }
+    
+    [HttpGet("all/names")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<string>))]
+    public async Task<IActionResult> GetAllNames()
+    {
+        var bodytypes = await bodytypeRepository.GetAllNames();
+        return Ok(bodytypes);
+    }
 }

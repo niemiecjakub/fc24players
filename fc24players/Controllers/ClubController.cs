@@ -15,4 +15,12 @@ public class ClubController(IClubRepository clubRepository) : Controller
         var clubs = await clubRepository.GetAll();
         return Ok(clubs);
     }
+    
+    [HttpGet("all/names")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<string>))]
+    public async Task<IActionResult> GetAllNames()
+    {
+        var clubs = await clubRepository.GetAllNames();
+        return Ok(clubs);
+    }
 }

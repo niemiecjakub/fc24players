@@ -15,4 +15,12 @@ public class PlaystyleController(IPlaystyleRepository playstyleRepository) : Con
         var playstyles = await playstyleRepository.GetAll();
         return Ok(playstyles);
     }
+    
+    [HttpGet("all/names")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<string>))]
+    public async Task<IActionResult> GetAllNames()
+    {
+        var playstyles = await playstyleRepository.GetAllNames();
+        return Ok(playstyles);
+    }
 }

@@ -11,4 +11,9 @@ public class PlaystyleRepository(ApplicationDbContext context) : IPlaystyleRepos
     { 
         return await context.Playstyle.ToListAsync();
     }
+
+    public async Task<ICollection<string>> GetAllNames()
+    {
+        return await context.Playstyle.Select(ps => ps.Name).ToListAsync();
+    }
 }

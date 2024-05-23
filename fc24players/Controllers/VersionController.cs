@@ -15,4 +15,12 @@ public class VersionController(IVersionRepository versionRepository) : Controlle
         var versions = await versionRepository.GetAll();
         return Ok(versions);
     }
+    
+    [HttpGet("all/names")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<string>))]
+    public async Task<IActionResult> GetAllNames()
+    {
+        var versions = await versionRepository.GetAllNames();
+        return Ok(versions);
+    }
 }

@@ -11,7 +11,12 @@ public class NationalityRepository(ApplicationDbContext context) : INationalityR
     {
         return await context.Nationality.Include(n => n.Players).ToListAsync();
     }
-    
+
+    public async Task<ICollection<string>> GetAllNames()
+    {
+        return await context.Nationality.Select(n => n.Name).ToListAsync();
+    }
+
     public async Task<Nationality?> GetByName(string name)
     {
         return await context.Nationality.Include(n => n.Players).FirstOrDefaultAsync(n => n.Name.ToUpper().Trim().Equals(name.ToUpper().Trim()));

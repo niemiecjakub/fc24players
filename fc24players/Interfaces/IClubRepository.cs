@@ -5,4 +5,5 @@ namespace fc24players.Interfaces;
 public interface IClubRepository
 {
     Task<ICollection<Club>> GetAll();
+    Task<ICollection<string>> GetAllNames();
 }

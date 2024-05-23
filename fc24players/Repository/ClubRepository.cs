@@ -11,4 +11,9 @@ public class ClubRepository(ApplicationDbContext context) : IClubRepository
     {
         return await context.Club.ToListAsync();
     }
+    
+    public async Task<ICollection<string>> GetAllNames()
+    {
+        return await context.Club.Select(c => c.Name).ToListAsync();
+    }
 }

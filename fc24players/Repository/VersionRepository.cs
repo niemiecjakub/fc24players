@@ -11,4 +11,9 @@ public class VersionRepository(ApplicationDbContext context) : IVersionRepositor
     {
         return await context.Version.ToListAsync();
     }
+
+    public async Task<ICollection<string>> GetAllNames()
+    {
+        return await context.Version.Select(v => v.Name).ToListAsync();
+    }
 }

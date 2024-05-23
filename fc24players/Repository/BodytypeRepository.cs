@@ -11,4 +11,9 @@ public class BodytypeRepository(ApplicationDbContext context) : IBodytypeReposit
     {
         return await context.Bodytype.ToListAsync();
     }
+
+    public async Task<ICollection<string>> GetAllNames()
+    {
+        return await context.Bodytype.Select(b => b.Name).ToListAsync();
+    }
 }

@@ -11,4 +11,9 @@ public class LeagueRepository(ApplicationDbContext context) : ILeagueRepository
     {
         return await context.League.ToListAsync();
     }
+
+    public async Task<ICollection<string>> GetAllNames()
+    {
+        return await context.League.Select(l => l.Name).ToListAsync();
+    }
 }

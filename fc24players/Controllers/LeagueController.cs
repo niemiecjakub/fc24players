@@ -15,4 +15,12 @@ public class LeagueController(ILeagueRepository leagueRepository) : Controller
         var leagues = await leagueRepository.GetAll();
         return Ok(leagues);
     } 
+    
+    [HttpGet("all/names")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<string>))]
+    public async Task<IActionResult> GetAllNames()
+    {
+        var leagues = await leagueRepository.GetAllNames();
+        return Ok(leagues);
+    }
 }

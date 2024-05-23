@@ -11,4 +11,14 @@ public class AcceleRateRepository(ApplicationDbContext context) : IAcceleRateRep
     {
         return await context.Accelerate.ToListAsync();
     }
+
+    public async Task<ICollection<string>> GetAllNames()
+    {
+        return await context.Accelerate.Select(a => a.Name).ToListAsync();
+    }
+
+    public Task<AcceleRate?> GetByName(string name)
+    {
+        throw new NotImplementedException();
+    }
 }

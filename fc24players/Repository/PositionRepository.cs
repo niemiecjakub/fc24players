@@ -11,4 +11,9 @@ public class PositionRepository(ApplicationDbContext context) : IPositionReposit
     {
         return await context.Position.ToListAsync();
     }
+
+    public async Task<ICollection<string>> GetAllNames()
+    {
+        return await context.Position.Select(p => p.Name).ToListAsync();
+    }
 }
