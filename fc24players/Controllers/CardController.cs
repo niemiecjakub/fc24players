@@ -18,4 +18,17 @@ public class CardController(ICardRepository cardRepository) : Controller
         var cardsDto = cards.Select(c => c.ToCardDto()).ToList();
         return Ok(cardsDto);
     }
+    
+    [HttpGet("{id}")]
+    [ProducesResponseType(200, Type = typeof(Card))]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var card = await cardRepository.GetById(id);
+        if (card == null)
+        {
+            return NotFound();
+        }
+        var cardDto = card.ToCardDetailedDto();
+        return Ok(cardDto);
+    }
 }

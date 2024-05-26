@@ -13,6 +13,7 @@ public class CardRepository(ApplicationDbContext context) : ICardRepository
         var cards = context.Card
             .Include(c => c.Version)
             .Include(c => c.Club)
+            .Include(c => c.League)
             .Include(c => c.Position)
             .Include(c => c.Player)
             .ThenInclude(p => p.Nationality)
@@ -49,15 +50,14 @@ public class CardRepository(ApplicationDbContext context) : ICardRepository
         return await cards.Skip(skipNumber).Take(paginationQuery.PageSize).ToListAsync();
     }
 
-    public async Task<ICollection<Card>> GetByAcceleRateName(string name)
+    public async Task<Card> GetById(int id)
     {
-        return await context.Card
-            .Include(c => c.Version)
+        return await context.Card.Include(c => c.Version)
             .Include(c => c.Club)
+            .Include(c => c.League)
             .Include(c => c.Position)
             .Include(c => c.Player)
             .ThenInclude(p => p.Nationality)
-            .Where(c => c.AcceleRate.Name.Equals(name))
-            .ToListAsync();
+            .FirstOrDefaultAsync(c => c.Id == id);
     }
 }

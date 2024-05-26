@@ -6,6 +6,7 @@ public class CardDto
 {
     public int Id { get; set; }
     public PlayerDto Player { get; set; }
+    public string League { get; set; }
     public string Version { get; set; }
     public string? Club { get; set; }
     public string Position  { get; set; }

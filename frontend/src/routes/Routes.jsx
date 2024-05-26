@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
                 element: <PlayersPage />,
             },
             {
-                path: "cards/:page?",
+                path: "card/:id",
                 element: <CardPage />,
             },
         ],

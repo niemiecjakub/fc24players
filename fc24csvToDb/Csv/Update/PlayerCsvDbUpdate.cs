@@ -6,18 +6,17 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
 {
     public void UpdateAll()
     {
-        // UpdateAcceleRate();
-        // UpdateBodytype();
-        // UpdateClub();
-        // UpdateLeague();
-        // UpdateNationality();
-        // UpdatePlaystyle();
-        // UpdateVersion();
-        // UpdatePosition();
-        // UpdatePosition();
-        // UpdatePlayer();
-
-        // UpdateCard();
+        UpdateAcceleRate();
+        UpdateBodytype();
+        UpdateClub();
+        UpdateLeague();
+        UpdateNationality();
+        UpdatePlaystyle();
+        UpdateVersion();
+        UpdatePosition();
+        UpdatePosition();
+        UpdatePlayer();
+        UpdateCard();
     }
 
     public void UpdateAcceleRate()
@@ -433,10 +432,8 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
                             card.Crossing.HasValue ? card.Crossing.Value : DBNull.Value);
                         insertCommand.Parameters.AddWithValue("@Curve",
                             card.Curve.HasValue ? card.Curve.Value : DBNull.Value);
-                        insertCommand.Parameters.AddWithValue("@DEF",
-                            card.DEF.HasValue ? card.DEF.Value : DBNull.Value);
-                        insertCommand.Parameters.AddWithValue("@DRI",
-                            card.DRI.HasValue ? card.DRI.Value : DBNull.Value);
+                        insertCommand.Parameters.AddWithValue("@DEF", card.DEF);
+                        insertCommand.Parameters.AddWithValue("@DRI", card.DRI);
                         insertCommand.Parameters.AddWithValue("@DefAwareness",
                             card.DefAwareness.HasValue ? card.DefAwareness.Value : DBNull.Value);
                         insertCommand.Parameters.AddWithValue("@FKAcc",
@@ -447,14 +444,10 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
                             card.Interceptions.HasValue ? card.Interceptions.Value : DBNull.Value);
                         insertCommand.Parameters.AddWithValue("@LongPass",
                             card.LongPass.HasValue ? card.LongPass.Value : DBNull.Value);
-                        insertCommand.Parameters.AddWithValue("@PAC",
-                            card.PAC.HasValue ? card.PAC.Value : DBNull.Value);
-                        insertCommand.Parameters.AddWithValue("@PAS",
-                            card.PAS.HasValue ? card.PAS.Value : DBNull.Value);
-                        insertCommand.Parameters.AddWithValue("@PHY",
-                            card.PHY.HasValue ? card.PHY.Value : DBNull.Value);
-                        insertCommand.Parameters.AddWithValue("@SHO",
-                            card.SHO.HasValue ? card.SHO.Value : DBNull.Value);
+                        insertCommand.Parameters.AddWithValue("@PAC", card.PAC);
+                        insertCommand.Parameters.AddWithValue("@PAS", card.PAS);
+                        insertCommand.Parameters.AddWithValue("@PHY", card.PHY);
+                        insertCommand.Parameters.AddWithValue("@SHO", card.SHO);
                         insertCommand.Parameters.AddWithValue("@ShortPass",
                             card.ShortPass.HasValue ? card.ShortPass.Value : DBNull.Value);
                         insertCommand.Parameters.AddWithValue("@StandTackle",

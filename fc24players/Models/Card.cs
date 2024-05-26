@@ -42,17 +42,17 @@ public class Card
     public  int? Price{ get; set; }
     public  int? Crossing{ get; set; }
     public  int? Curve{ get; set; }
-    public  int? DEF{ get; set; }
-    public  int? DRI{ get; set; }
+    public  int DEF{ get; set; }
+    public  int DRI{ get; set; }
     public  int? DefAwareness{ get; set; }
     public  int? FKAcc{ get; set; }
     public  int? HeadingAcc{ get; set; }
     public  int? Interceptions{ get; set; }
     public  int? LongPass{ get; set; }
-    public  int? PAC{ get; set; }
-    public  int? PAS{ get; set; }
-    public  int? PHY{ get; set; }
-    public  int? SHO{ get; set; }
+    public  int PAC{ get; set; }
+    public  int PAS{ get; set; }
+    public  int PHY{ get; set; }
+    public  int SHO{ get; set; }
     public  int? ShortPass{ get; set; }
     public  int? StandTackle{ get; set; }
     public  int? Vision{ get; set; }

@@ -6,5 +6,5 @@ namespace fc24players.Interfaces;
 public interface ICardRepository
 {
     Task<ICollection<Card>> GetAll(PaginationQueryObject paginationQuery, CardQueryObject cardQuery);
-    Task<ICollection<Card>> GetByAcceleRateName(string name);
+    Task<Card> GetById(int id);
 }

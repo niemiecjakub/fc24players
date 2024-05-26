@@ -1,10 +1,10 @@
 import './App.css';
-import {Outlet} from "react-router-dom";
+import {Outlet, useLocation} from "react-router-dom";
 import {ContentContainer} from "./components/ContentContainer";
 import {Navbar} from "./components/Navbar";
 
 function App() {
-
+    
   return (
     <div className="App">
         <Navbar />
