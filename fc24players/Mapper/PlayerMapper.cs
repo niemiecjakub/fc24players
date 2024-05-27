@@ -14,4 +14,15 @@ public static class PlayerMapper
             Nationality = player.Nationality.Name
         };
     }
+    
+    public static PlayerDetailedDto ToPlayerDetailedDto(this Player player)
+    {
+        return new PlayerDetailedDto()
+        {
+            Id = player.Id,
+            Name = player.Name,
+            Nationality = player.Nationality.Name,
+            Cards = player.Cards.Select(c => c.ToCardDetailedDto()).ToList()
+        };
+    }
 }

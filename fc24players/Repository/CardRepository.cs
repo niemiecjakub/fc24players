@@ -46,8 +46,13 @@ public class CardRepository(ApplicationDbContext context) : ICardRepository
         {
             cards = cards.Where(c => c.Age < cardQuery.MaxAge);
         }
-        var skipNumber = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
-        return await cards.Skip(skipNumber).Take(paginationQuery.PageSize).ToListAsync();
+
+        if (paginationQuery.PageNumber != null && paginationQuery.PageSize != null)
+        {
+            var skipNumber = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
+            return await cards.Skip((int)skipNumber).Take((int)paginationQuery.PageSize).ToListAsync();
+        }
+        return await cards.ToListAsync();
     }
 
     public async Task<Card> GetById(int id)

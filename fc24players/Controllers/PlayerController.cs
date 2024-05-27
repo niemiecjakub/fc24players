@@ -26,4 +26,13 @@ public class PlayerController(IPlayerRepository playerRepository) : Controller
         var players = await playerRepository.GetAllNames();
         return Ok(players);
     }
+    
+    [HttpGet("{id}")]
+    [ProducesResponseType(200, Type = typeof(PlayerDetailedDto))]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var player = await playerRepository.GetById(id);
+        var playerDto = player.ToPlayerDetailedDto();
+        return Ok(playerDto);
+    }
 }

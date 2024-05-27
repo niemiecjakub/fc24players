@@ -1,50 +1,88 @@
-﻿import {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import {Box} from "../components/Box";
-import {Button} from "../components/Button";
+﻿import {useEffect, useMemo, useState} from "react";
+import DataTable from 'react-data-table-component';
+import {Filter} from "../components/Filter";
+import {playerColumns} from "../utils/tables/playerColumns";
+import {Loader} from "../components/Loader/Loader";
+import {ExpandedPlayer} from "../components/ExpandedPlayer";
 
-const API_ENDPOINT = "https://localhost:7298/api/Player/all?PageSize=48&PageNumber=";
+const API_ENDPOINT = "https://localhost:7298/api/Player/all";
 
 export const PlayersPage = () => {
     const [players, setPlayers] = useState([]);
-    const {page} = useParams()
-    const navigate = useNavigate()
-    const currentPage = page ? parseInt(page) : 1;
+    const [isLoading, setIsLoading] = useState(false);
+    const [nameFilterText, setNameFilterText] = useState('');
+    const [nationalityFilterText, setNationalityFilterText] = useState('');
+    const [resetPaginationToggle, setResetPaginationToggle] = useState(true);
 
     useEffect(() => {
         const getPlayers = async () => {
-            const response = await fetch(API_ENDPOINT + currentPage)
+            setIsLoading(true)
+            const response = await fetch(API_ENDPOINT)
+            console.log(response)
             if (response.ok) {
                 const players = await response.json()
                 setPlayers(players)
             }
+            setIsLoading(false)
         }
 
         getPlayers()
-    }, [page]);
+    }, []);
 
-    const handleNextPage = () => {
-        navigate(`/players/${currentPage + 1}`);
-    }
-
-    const handlePreviousPage = () => {
-        if (currentPage > 1) {
-            navigate(`/players/${currentPage - 1}`);
+    const filteredPlayers = players.filter(item => {
+        if (nameFilterText !== '' && nationalityFilterText !== '') {
+            return (
+                item.name.toLowerCase().includes(nameFilterText.toLowerCase()) &&
+                item.nationality.toLowerCase().includes(nationalityFilterText.toLowerCase())
+            );
+        } else if (nameFilterText !== '') {
+            return item.name && item.name.toLowerCase().includes(nameFilterText.toLowerCase());
+        } else if (nationalityFilterText !== '') {
+            return item.nationality && item.nationality.toLowerCase().includes(nationalityFilterText.toLowerCase());
         }
-    }
+        return true; 
+    });
+    
+    const subHeaderComponentMemo = useMemo(() => {
+        const handleNameClear = () => {
+            if (nameFilterText) {
+                setResetPaginationToggle(!resetPaginationToggle);
+                setNameFilterText('');
+            }
+        };
+        const handleNationalityClear = () => {
+            if (nationalityFilterText) {
+                setResetPaginationToggle(!resetPaginationToggle);
+                setNationalityFilterText('');
+            }
+        };
+        return (
+            <div className="flex">
+                <Filter onFilter={e => setNameFilterText(e.target.value)} onClear={handleNameClear} filterText={nameFilterText} placeholder="Filter by name" className="mx-4"/>
+                <Filter onFilter={e => setNationalityFilterText(e.target.value)} onClear={handleNationalityClear} filterText={nationalityFilterText} placeholder="Filter by nationality"/>
+            </div>
+        );
+    }, [nameFilterText, nationalityFilterText, resetPaginationToggle]);
 
     return (
         <div>
             <h2 className="text-xl font-bold">Player page</h2>
-            {players.length > 0 && <Button content="next page" onClick={handleNextPage}/>}
-            <Button content="prev page" onClick={handlePreviousPage}/>
-            <div className="flex flex-wrap items-center justify-center">
-                {players.map(({id, name, nationality}, i) =>
-                    <Box title={name} key={i}>
-                        <p>{id}) {name} - {nationality}</p>
-                    </Box>)
-                }
-            </div>
+            <DataTable
+                columns={playerColumns}
+                data={filteredPlayers}
+                defaultSortFieldId={1}
+                fixedHeader
+                pagination
+                paginationResetDefaultPage={resetPaginationToggle} 
+                expandableRows 
+                expandableRowsComponent={ExpandedPlayer}
+                subHeader
+                subHeaderComponent={subHeaderComponentMemo}
+                persistTableHead
+                progressPending={isLoading}
+                progressComponent={<Loader />}
+                striped
+            />
         </div>
     )
 }

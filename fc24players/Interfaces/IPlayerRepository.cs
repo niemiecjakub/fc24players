@@ -7,5 +7,5 @@ public interface IPlayerRepository
 {
     Task<ICollection<Player>> GetAll(PaginationQueryObject paginationQuery, string nationality);
     Task<ICollection<string>> GetAllNames();
-    Task<Player> GetByName();
+    Task<Player> GetById(int id);
 }

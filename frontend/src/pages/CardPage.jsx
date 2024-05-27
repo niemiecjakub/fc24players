@@ -2,6 +2,8 @@
 import {useEffect, useState} from "react";
 import {Card} from "../components/Card/Card";
 import {useLocation, useParams} from "react-router-dom";
+import {StatsChart} from "../components/Card/StatsChart";
+import {toRadarChartData} from "../utils/Chart";
 
 
 const API_ENDPOINT = "https://localhost:7298/api/Card/";
@@ -33,7 +35,10 @@ export const CardPage = () => {
             <FlexContainer>
                 {isLoading ? (<h1>loading</h1>) : (
                     <>
-                        {card ? <Card data={card}/> : <h1>No data</h1>}
+                        {card ? <>
+                            <Card data={card}/>
+                            <StatsChart data={toRadarChartData(card)}/>
+                            </>: <h1>No data</h1>}
                     </>
                 )}
 
