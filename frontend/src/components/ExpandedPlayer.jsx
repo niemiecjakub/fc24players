@@ -1,8 +1,6 @@
 ﻿import {useEffect, useState} from "react";
 import {Loader} from "./Loader/Loader";
-import {Box} from "./Box";
-import {Card} from "./Card/Card";
-import {MainStat} from "./Card/MainStat";
+import {CardImage} from "./Card/CardImage";
 import {useNavigate} from "react-router-dom";
 
 const API_ENDPOINT = "https://localhost:7298/api/Player/";
@@ -34,8 +32,8 @@ export const ExpandedPlayer = ({data: {id}}) => {
             {playerData && 
                 <div className="flex">
                     {playerData.cards.map(card => 
-                        <div onClick={() => handleCardNavigate(card.id)} className="cursor-pointer">
-                            <Card data={card} />
+                        <div className="cursor-pointer mx-4" onClick={() => handleCardNavigate(card.id)} >
+                            <CardImage id={card.id} className="h-48"/>
                         </div>
                         )}
                 </div>

@@ -1,9 +1,11 @@
 ﻿import {FlexContainer} from "../components/FlexContainer";
 import {useEffect, useState} from "react";
-import {Card} from "../components/Card/Card";
+import {CardImage} from "../components/Card/CardImage";
 import {useLocation, useParams} from "react-router-dom";
 import {StatsChart} from "../components/Card/StatsChart";
 import {toRadarChartData} from "../utils/Chart";
+import {CardStats} from "../components/Card/CardStats";
+import {Loader} from "../components/Loader/Loader";
 
 
 const API_ENDPOINT = "https://localhost:7298/api/Card/";
@@ -29,16 +31,29 @@ export const CardPage = () => {
         getCard()
     }, [useLocation().pathname])
 
+    console.log(card)
     return (
         <div>
             <h2 className="text-xl font-bold">Card page</h2>
             <FlexContainer>
-                {isLoading ? (<h1>loading</h1>) : (
+                {isLoading ? (<Loader />) : (
                     <>
-                        {card ? <>
-                            <Card data={card}/>
-                            <StatsChart data={toRadarChartData(card)}/>
-                            </>: <h1>No data</h1>}
+                        {card ? (
+                                <div className="flex flex-col">
+                                    <div className="flex divide-x-2 divide-black my-3 items-center">
+                                        <h1 className="font-bold text-2xl">{card.player.name}</h1>
+                                        <p className="text-xl p-2 m-2">{card.version}</p>
+                                        <p className="text-xl p-2">{card.price} $</p>
+                                    </div>
+                                    <div className="flex">
+                                        <CardImage id={id} className="h-96"/>
+                                        <CardStats data={card}/>
+                                    </div>
+                                        <StatsChart data={toRadarChartData(card)}/>
+                                </div>
+                            )
+                            :
+                            <h1>No data</h1>}
                     </>
                 )}
 
