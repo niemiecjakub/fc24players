@@ -6,6 +6,11 @@ import {StatsChart} from "../components/Card/StatsChart";
 import {toRadarChartData} from "../utils/Chart";
 import {CardStats} from "../components/Card/CardStats";
 import {Loader} from "../components/Loader/Loader";
+import {CardTitle} from "../components/Card/CardTitle";
+import {CardDetails} from "../components/Card/CardDetails";
+import {Divider} from "../components/Card/Divider";
+import {CardPlaystyles} from "../components/Card/CardPlaystyles";
+import {Position} from "../components/Card/Position";
 
 
 const API_ENDPOINT = "https://localhost:7298/api/Card/";
@@ -33,31 +38,37 @@ export const CardPage = () => {
 
     console.log(card)
     return (
-        <div>
-            <h2 className="text-xl font-bold">Card page</h2>
             <FlexContainer>
                 {isLoading ? (<Loader />) : (
                     <>
                         {card ? (
                                 <div className="flex flex-col">
-                                    <div className="flex divide-x-2 divide-black my-3 items-center">
-                                        <h1 className="font-bold text-2xl">{card.player.name}</h1>
-                                        <p className="text-xl p-2 m-2">{card.version}</p>
-                                        <p className="text-xl p-2">{card.price} $</p>
-                                    </div>
+                                    <CardTitle card={card} />
                                     <div className="flex">
-                                        <CardImage id={id} className="h-96"/>
-                                        <CardStats data={card}/>
+                                        <div className="flex flex-col">
+                                            <CardImage id={id} className="h-96"/>
+                                            <div className="flex-col">
+                                                <span>Alt positions</span>
+                                                <div className="flex justify-evenly">
+                                                    <Position position="LM"/>
+                                                    <Position position="CAM"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col h-full bg-gray-400 p-2 rounded-2xl">
+                                            <CardDetails />
+                                            <Divider width={100}/>
+                                            <CardStats card={card}/>
+                                            <CardPlaystyles />
+                                        </div>
                                     </div>
-                                        <StatsChart data={toRadarChartData(card)}/>
+                                    {/*<StatsChart data={toRadarChartData(card)}/>*/}
                                 </div>
                             )
                             :
                             <h1>No data</h1>}
                     </>
                 )}
-
             </FlexContainer>
-        </div>
     )
 }

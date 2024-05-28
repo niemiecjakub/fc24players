@@ -1,7 +1,7 @@
-﻿export const StatValueBar = ({value}) => {
+﻿export const StatValueBar = ({value, color}) => {
     return (
-        <div className="h-1 w-full bg-neutral-200 dark:bg-neutral-600">
-            <div className="h-1 bg-green-500" style={{width: `${value}%`}}></div>
+        <div className="h-2 w-full bg-neutral-200 dark:bg-neutral-600 rounded-2xl">
+            <div className="h-2 rounded-2xl" style={{width: `${value}%`, backgroundColor : `${color}`}}></div>
         </div>
         )
 }

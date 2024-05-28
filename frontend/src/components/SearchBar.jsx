@@ -17,14 +17,15 @@ export const SearchBar = () => {
     };
     
     return (
-        <FlexContainer className="flex">
+        <div className="px-2 py-1 rounded-2xl bg-amber-50">
             <input
                 type="text"
                 placeholder="Card id..."
                 onChange={handleChange}
                 value={searchInput}
+                className=""
             />
-            <button className="bg-amber-50" onClick={searchCard}>Search</button>
-        </FlexContainer>
+            <button onClick={searchCard}>Search</button>
+        </div>
     )
 }
