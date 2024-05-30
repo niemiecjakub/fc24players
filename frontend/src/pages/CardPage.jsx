@@ -2,8 +2,6 @@
 import {useEffect, useState} from "react";
 import {CardImage} from "../components/Card/CardImage";
 import {useLocation, useParams} from "react-router-dom";
-import {StatsChart} from "../components/Card/StatsChart";
-import {toRadarChartData} from "../utils/Chart";
 import {CardStats} from "../components/Card/CardStats";
 import {Loader} from "../components/Loader/Loader";
 import {CardTitle} from "../components/Card/CardTitle";
@@ -11,7 +9,6 @@ import {CardDetails} from "../components/Card/CardDetails";
 import {Divider} from "../components/Card/Divider";
 import {CardPlaystyles} from "../components/Card/CardPlaystyles";
 import {Position} from "../components/Card/Position";
-
 
 const API_ENDPOINT = "https://localhost:7298/api/Card/";
 
@@ -27,8 +24,6 @@ export const CardPage = () => {
             if (response.ok) {
                 const cards = await response.json()
                 setCard(cards)
-            } else {
-                setCard("")
             }
             setIsLoading(false)
         }

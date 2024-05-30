@@ -7,7 +7,7 @@ import {ExpandedPlayer} from "../components/ExpandedPlayer";
 
 const API_ENDPOINT = "https://localhost:7298/api/Player/all";
 
-export const PlayersPage = () => {
+export const PlayerTablePage = () => {
     const [players, setPlayers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [nameFilterText, setNameFilterText] = useState('');

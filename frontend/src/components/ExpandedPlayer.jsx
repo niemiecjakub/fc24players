@@ -1,7 +1,7 @@
 ﻿import {useEffect, useState} from "react";
 import {Loader} from "./Loader/Loader";
-import {CardImage} from "./Card/CardImage";
 import {useNavigate} from "react-router-dom";
+import {CardRow} from "./CardRow";
 
 const API_ENDPOINT = "https://localhost:7298/api/Player/";
 export const ExpandedPlayer = ({data: {id}}) => {
@@ -16,7 +16,6 @@ export const ExpandedPlayer = ({data: {id}}) => {
             if (response.ok) {
                 const playerData = await response.json()
                 setPlayerData(playerData)
-                console.log(playerData)
             }
             setIsLoading(false)
         }
@@ -30,10 +29,10 @@ export const ExpandedPlayer = ({data: {id}}) => {
     return isLoading ? <Loader/> : (
         <>
             {playerData && 
-                <div className="flex">
+                <div className="flex flex-col">
                     {playerData.cards.map(card => 
                         <div className="cursor-pointer mx-4" onClick={() => handleCardNavigate(card.id)} >
-                            <CardImage id={card.id} className="h-48"/>
+                            <CardRow card={card} className="h-48"/>
                         </div>
                         )}
                 </div>

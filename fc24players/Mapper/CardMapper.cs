@@ -12,14 +12,25 @@ public static class CardMapper
         {
             Id = card.Id,
             Player = card.Player.ToPlayerDto(),
-            Version = card.Version.Name,
-            Club = card.Club.Name,
             League = card.League.Name,
-            Position = card.Position.Name,
-            Age = card.Age,
+            Version = card.Version?.Name,
+            Club = card.Club?.Name,
+            Position = card.Position?.Name,
             OverallRating = card.OverallRating,
             Price = card.Price,
-            Link = card.Link
+            Link = card.Link,
+            SHO = card.SHO,
+            DEF = card.DEF,
+            DRI = card.DRI,
+            PAC = card.PAC,
+            PAS = card.PAS,
+            PHY = card.PHY,
+            DIV = card.DIV,
+            HAN = card.HAN,
+            KIC = card.KIC,
+            POS = card.POS,
+            REF = card.REF,
+            SPD = card.SPD,
         };
     }
     
@@ -89,7 +100,23 @@ public static class CardMapper
                 Strength = card.Strength,
                 Jumping = card.Jumping,
                 Stamina = card.Stamina
+            },
+            DIV = card.DIV,
+            HAN = card.HAN,
+            KIC = card.KIC,
+            POS = card.POS,
+            REF = card.REF,
+            SPD = card.SPD,
+            GkStats = new GkStatsDto()
+            {
+                GkDiving = card.GKDiving,
+                GkHandling = card.GKHandling,
+                GkKicking = card.GKKicking,
+                GkPos = card.GKPos,
+                GkReflexes = card.GKReflexes
             }
+            
         };
     }
+
 }

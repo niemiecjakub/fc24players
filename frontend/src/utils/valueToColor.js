@@ -1,4 +1,7 @@
 ﻿export const valueToColor = (value) => {
+    if (value == null) {
+        return "#808080"
+    }
    if (value < 50) {
        return "#FF4545"
    }
