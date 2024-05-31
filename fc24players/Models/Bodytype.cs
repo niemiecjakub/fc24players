@@ -4,5 +4,5 @@ public class Bodytype
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public ICollection<CardBodytype> Cards { get; set; }
+    public ICollection<CardBodytype> Cards { get; set; } = new List<CardBodytype>();
 }

@@ -63,6 +63,14 @@ public class CardRepository(ApplicationDbContext context) : ICardRepository
             .Include(c => c.Position)
             .Include(c => c.Player)
             .ThenInclude(p => p.Nationality)
+            .Include(c => c.CardBodytype)
+            .ThenInclude(cb => cb.Bodytype)
+            .Include(c => c.CardAltPos)
+            .ThenInclude(cb => cb.Altpos)
+            .Include(c => c.CardPlaystyle)
+            .ThenInclude(cb => cb.Playstyle)
+            .Include(c => c.CardPlayStylePlus)
+            .ThenInclude(cb => cb.Playstyle)
             .FirstOrDefaultAsync(c => c.Id == id);
     }
 }

@@ -4,7 +4,6 @@ import {IndividualStat} from "./IndividualStat";
 export const CardStats = ({
     card: {position, pac, pacStats, sho, shoStats, pas, pasStats, dri, driStats, def, defStats, phy, phyStats, div, han, kic, ref, spd, pos, gkStats}}
 ) => {
-    console.log(gkStats)
     return (
         <div className="flex flex-col">
             {

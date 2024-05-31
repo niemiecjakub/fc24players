@@ -6,22 +6,21 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
 {
     public void UpdateAll()
     {
-        // UpdateAcceleRate();
-        // UpdateBodytype();
-        // UpdateClub();
-        // UpdateLeague();
-        // UpdateNationality();
-        // UpdatePlaystyle();
-        // UpdateVersion();
-        // UpdatePosition();
-        // UpdatePosition();
-        // UpdatePlayer();
-        // UpdateCard();
-        
+        UpdateAcceleRate();
+        UpdateBodytype();
+        UpdateClub();
+        UpdateLeague();
+        UpdateNationality();
+        UpdatePlaystyle();
+        UpdateVersion();
+        UpdatePosition();
+        UpdatePosition();
+        UpdatePlayer();
+        UpdateCard();
         UpdateCardAltpos();
-        // UpdateCardBodytype();
-        // UpdateCardPlaystyle();
-        // UpdateCardPlaystylePlus();
+        UpdateCardBodytype();
+        UpdateCardPlaystyle();
+        UpdateCardPlaystylePlus();
     }
 
     public void UpdateAcceleRate()
@@ -528,7 +527,7 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
                 {
                     foreach (var cardAltpos in cardAltposList)
                     {
-                        var altposId = GetEntityId(connection, "Position", cardAltpos.Position.Name);
+                        var altposId = GetEntityId(connection, "Position", cardAltpos.Altpos.Name);
                         
                         using var checkCommand = new SqliteCommand(checkExistenceSql, connection);
                         checkCommand.Parameters.AddWithValue("@cardId", cardAltpos.CardId);

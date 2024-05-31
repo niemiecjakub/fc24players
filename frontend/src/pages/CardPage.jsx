@@ -30,8 +30,7 @@ export const CardPage = () => {
 
         getCard()
     }, [useLocation().pathname])
-
-    console.log(card)
+    
     return (
             <FlexContainer>
                 {isLoading ? (<Loader />) : (
@@ -54,7 +53,7 @@ export const CardPage = () => {
                                             <CardDetails />
                                             <Divider width={100}/>
                                             <CardStats card={card}/>
-                                            <CardPlaystyles />
+                                            <CardPlaystyles card={card}/>
                                         </div>
                                     </div>
                                     {/*<StatsChart data={toRadarChartData(card)}/>*/}

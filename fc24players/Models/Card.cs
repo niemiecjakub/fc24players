@@ -10,6 +10,10 @@ public class Card
     public Version? Version { get; set; }
     public Position? Position { get; set; }
     public AcceleRate? AcceleRate { get; set; }
+    public ICollection<CardBodytype?> CardBodytype { get; set; } = new List<CardBodytype?>();
+    public ICollection<CardAltpos?> CardAltPos { get; set; } = new List<CardAltpos?>();
+    public ICollection<CardPlaystyle> CardPlaystyle { get; set; } = new List<CardPlaystyle>();
+    public ICollection<CardPlayStylePlus?> CardPlayStylePlus { get; set; } = new List<CardPlayStylePlus?>();
     public  int? OverallRating{ get; set; }
     public string? DefWr{ get; set; }
     public string? AttWr { get; set; }
@@ -68,9 +72,4 @@ public class Card
     public  int? REF{ get; set; }
     public  int? SPD{ get; set; }
     public  DateTime? Added{ get; set; }
-    
-    // public PlayerAltpos PlayerAltpos { get; set; }
-    // public PlayerPlaystyle PlayerPlaystyle { get; set; }
-    // public PlayerPlayStylePlus? PlayerPlayStylePlus
-    // public PlayerBodytype? PlayerBodytype { get; set; }
 }

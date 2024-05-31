@@ -114,8 +114,11 @@ public static class CardMapper
                 GkKicking = card.GKKicking,
                 GkPos = card.GKPos,
                 GkReflexes = card.GKReflexes
-            }
-            
+            },
+            Bodytype = card.CardBodytype.Select(cb => cb.Bodytype.Name).ToList(),
+            AltPos = card.CardAltPos.Select(cap => cap.Altpos.Name).ToList(),
+            Playstyle = card.CardPlaystyle.Select(cp => cp.Playstyle.Name).ToList(),
+            PlaystylePlus = card.CardPlayStylePlus.Select(cpp => cpp.Playstyle.Name).ToList()
         };
     }
 

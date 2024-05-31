@@ -1,22 +1,29 @@
 ﻿import {Playstyle} from "./Playstyle";
 
-export const CardPlaystyles = () => {
+export const CardPlaystyles = ({card}) => {
+    console.log(card.playstyle)
+    console.log(card.playstylePlus)
     return (
         <div className="flex ">
-            <div className="flex-col pr-8">
-                Playstyles+
-                <div className="flex">
-                    <Playstyle playstyle="intercept" plus={true} />
-                    <Playstyle playstyle="intercept" plus={true} />
+            {
+                card.playstylePlus.length > 0 && 
+                <div className="flex-col pr-8">
+                    Playstyles+
+                    
+                    <div className="flex">
+                        {card.playstylePlus && card.playstylePlus.map((playstyle, i) => <Playstyle playstyle={playstyle.toLowerCase()} plus={true}/>)}
+                    </div>
                 </div>
-            </div>
-            <div className="flex-col">
-                Playstyles
-                <div className="flex">
-                    <Playstyle playstyle="intercept" plus={false} />
-                    <Playstyle playstyle="intercept" plus={false} />
+            }
+            {
+                card.playstyle.length > 0 &&
+                <div className="flex-col">
+                    Playstyles
+                    <div className="flex">
+                        {card.playstyle.map((playstyle, i) => <Playstyle playstyle={playstyle.toLowerCase()} plus={false}/>)}
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     )
 }

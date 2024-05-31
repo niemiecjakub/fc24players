@@ -365,7 +365,7 @@ public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
                     cardAltpos.Add(new CardAltpos()
                     {
                         CardId = cardId,
-                        Position = new Position()
+                        Altpos = new Position()
                         {
                             Name = position.Trim()
                         }
