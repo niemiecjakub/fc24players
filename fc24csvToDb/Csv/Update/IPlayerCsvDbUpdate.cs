@@ -4,7 +4,6 @@ public interface IPlayerCsvDbUpdate
 {
     public void UpdateAcceleRate();
     public void UpdateBodytype();
-    public void UpdateCard();
     public void UpdateClub();
     public void UpdateLeague();
     public void UpdateNationality();
@@ -12,6 +11,10 @@ public interface IPlayerCsvDbUpdate
     public void UpdatePlaystyle();
     public void UpdateVersion();
     public void UpdatePosition();
-
+    public void UpdateCard();
+    public void UpdateCardAltpos();
+    public void UpdateCardBodytype();
+    public void UpdateCardPlaystyle();
+    public void UpdateCardPlaystylePlus();
     public void UpdateAll();
 }

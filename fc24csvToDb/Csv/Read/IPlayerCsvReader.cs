@@ -15,6 +15,9 @@ public interface IPlayerCsvReader
     public IEnumerable<Playstyle> ReadPlaystyle();
     public IEnumerable<Version> ReadVersion();
     public IEnumerable<List<Position>> ReadPosition();
-
+    public IEnumerable<List<CardAltpos>> ReadCardAltpos();
+    public IEnumerable<List<CardBodytype>> ReadCardBodytype();
+    public IEnumerable<List<CardPlaystyle>> ReadCardPlaystyle();
+    public IEnumerable<List<CardPlayStylePlus>> ReadCardPlaystylePlus();
 
 }

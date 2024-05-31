@@ -9,7 +9,7 @@ namespace fc24csvToDb.Csv;
 
 public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
 {
-    public CsvReader CreateCsvReader()
+    private CsvReader CreateCsvReader()
     {
         var reader = new StreamReader(filePath);
         var csvReader = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -95,7 +95,6 @@ public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
 
     public IEnumerable<List<Position>> ReadPosition()
     {
-        //TODO: Fix
         using (var reader = CreateCsvReader())
         {
             while (reader.Read())
@@ -250,7 +249,6 @@ public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
                 var position = reader.GetField<string>("Position");
                 var acceleRate = reader.GetField<string>("AcceleRATE");
                 var league = reader.GetField<string>("League");
-
                 
                 yield return new Card()
                     {
@@ -318,9 +316,9 @@ public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
                         Curve = reader.GetField<int?>("Curve"),
                         DEF = reader.GetField<int?>("DEF"),
                         DRI = reader.GetField<int?>("DRI"),
-                        DefAwareness = reader.GetField<int?>("Def Awareness"),
-                        FKAcc = reader.GetField<int?>("FK Acc"),
-                        HeadingAcc = reader.GetField<int?>("Heading Acc"),
+                        DefAwareness = reader.GetField<int?>("Def. Awareness"),
+                        FKAcc = reader.GetField<int?>("FK. Acc."),
+                        HeadingAcc = reader.GetField<int?>("Heading Acc."),
                         Interceptions = reader.GetField<int?>("Interceptions"),
                         LongPass = reader.GetField<int?>("Long Pass"),
                         PAC = reader.GetField<int?>("PAC"),
@@ -331,17 +329,148 @@ public class PlayerPlayerCsvReader(string filePath) : IPlayerCsvReader
                         StandTackle = reader.GetField<int?>("Stand Tackle"),
                         Vision = reader.GetField<int?>("Vision"),
                         DIV = reader.GetField<int?>("DIV"),
-                        GKDiving = reader.GetField<int?>("GK Diving"),
-                        GKHandling = reader.GetField<int?>("GK Handling"),
-                        GKKicking = reader.GetField<int?>("GK Kicking"),
-                        GKPos = reader.GetField<int?>("GK Pos"),
-                        GKReflexes = reader.GetField<int?>("GK Reflexes"),
+                        GKDiving = reader.GetField<int?>("GK. Diving"),
+                        GKHandling = reader.GetField<int?>("GK. Handling"),
+                        GKKicking = reader.GetField<int?>("GK. Kicking"),
+                        GKPos = reader.GetField<int?>("GK. Pos"),
+                        GKReflexes = reader.GetField<int?>("GK. Reflexes"),
                         HAN = reader.GetField<int?>("HAN"),
                         KIC = reader.GetField<int?>("KIC"),
                         POS = reader.GetField<int?>("POS"),
                         REF = reader.GetField<int?>("REF"),
                         SPD = reader.GetField<int?>("SPD"),
                     };
+            }
+        }
+    }
+    
+    public IEnumerable<List<CardAltpos>> ReadCardAltpos()
+    {
+        using (var reader = CreateCsvReader())
+        {
+            while (reader.Read())
+            {
+                var cardId = reader.GetField<int>("ID");
+                var altPosition = reader.GetField<string>("Alt Pos.").Split(",");
+                List<string> positionList = new List<string>(altPosition);
+                string[] allPositions = positionList.ToArray();
+                
+                List<CardAltpos> cardAltpos = new List<CardAltpos>();
+                foreach (var position in allPositions)
+                {
+                    if (string.IsNullOrWhiteSpace(position) || position.Equals("None"))
+                    {
+                        continue;
+                    }
+                    cardAltpos.Add(new CardAltpos()
+                    {
+                        CardId = cardId,
+                        Position = new Position()
+                        {
+                            Name = position.Trim()
+                        }
+                    });
+                }
+
+                yield return cardAltpos;
+            }
+        }
+    }
+
+    public IEnumerable<List<CardBodytype>> ReadCardBodytype()
+    {
+        using (var reader = CreateCsvReader())
+        {
+            while (reader.Read())
+            {
+                var cardId = reader.GetField<int>("ID");
+                var bodytype = reader.GetField<string>("Body Type");
+                String[] bodytypes = bodytype.Split("&");
+                
+                List<CardBodytype> cardBodytypeList = new List<CardBodytype>();
+                foreach (var btype in bodytypes)
+                {
+                    if (string.IsNullOrWhiteSpace(btype) || btype.Equals("--"))
+                    {
+                        continue;
+                    }
+                    cardBodytypeList.Add(new CardBodytype()
+                    {
+                        CardId = cardId,
+                        Bodytype = new Bodytype()
+                        {
+                            Name = btype.Trim()
+                        }
+                    });
+                }
+
+                yield return cardBodytypeList;
+            }
+        }
+    }
+
+    public IEnumerable<List<CardPlaystyle>> ReadCardPlaystyle()
+    {
+        using (var reader = CreateCsvReader())
+        {
+            while (reader.Read())
+            {
+                var cardId = reader.GetField<int>("ID");
+                var playStyle = reader.GetField<string>("PlayStyles").Split(",");
+                string[] allPlaystyles = playStyle.ToArray();
+                
+                List<CardPlaystyle> cardPlaystyleList = new List<CardPlaystyle>();
+                foreach (var ps in allPlaystyles)
+                {
+                    if (string.IsNullOrWhiteSpace(ps))
+                    {
+                        continue;
+                    }
+
+                    cardPlaystyleList.Add(new CardPlaystyle()
+                    {
+                        CardId = cardId,
+                        Playstyle = new Playstyle()
+                        {
+                            Name = ps.Trim()
+                        }
+                    });
+                }
+
+                yield return cardPlaystyleList;
+            }
+        }
+    }
+
+    public IEnumerable<List<CardPlayStylePlus>> ReadCardPlaystylePlus()
+    {
+        using (var reader = CreateCsvReader())
+        {
+            while (reader.Read())
+            {
+                var cardId = reader.GetField<int>("ID");
+                var playStylePlus = reader.GetField<string>("PlayStyles+").Split(",");
+                string[] allPlaystyles = playStylePlus.ToArray();
+                
+                List<CardPlayStylePlus> cardPlaystyleList = new List<CardPlayStylePlus>();
+                foreach (var ps in allPlaystyles)
+                {
+                    if (string.IsNullOrWhiteSpace(ps))
+                    {
+                        continue;
+                    }
+
+                    cardPlaystyleList.Add(new CardPlayStylePlus()
+                    {
+                        CardId = cardId,
+                        Playstyle = new Playstyle()
+                        {
+                            Name = ps.Trim()
+                        }
+                    });
+                }
+
+                yield return cardPlaystyleList;
             }
         }
     }

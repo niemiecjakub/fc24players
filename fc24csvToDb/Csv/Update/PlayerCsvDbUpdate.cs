@@ -6,17 +6,22 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
 {
     public void UpdateAll()
     {
-        UpdateAcceleRate();
-        UpdateBodytype();
-        UpdateClub();
-        UpdateLeague();
-        UpdateNationality();
-        UpdatePlaystyle();
-        UpdateVersion();
-        UpdatePosition();
-        UpdatePosition();
-        UpdatePlayer();
-        UpdateCard();
+        // UpdateAcceleRate();
+        // UpdateBodytype();
+        // UpdateClub();
+        // UpdateLeague();
+        // UpdateNationality();
+        // UpdatePlaystyle();
+        // UpdateVersion();
+        // UpdatePosition();
+        // UpdatePosition();
+        // UpdatePlayer();
+        // UpdateCard();
+        
+        UpdateCardAltpos();
+        // UpdateCardBodytype();
+        // UpdateCardPlaystyle();
+        // UpdateCardPlaystylePlus();
     }
 
     public void UpdateAcceleRate()
@@ -338,12 +343,6 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
 
     public void UpdateCard()
     {
-        // var insertCardSql =
-        //     @"INSERT INTO Card(Id, PlayerId, NationalityId, ClubId, LeagueId,VersionId, PositionId, AcceleRateId, 
-        //                   OverallRating, DefWR, AttWR, Link, Foot, Height, Weight, WeakFoot) 
-        //                   VALUES (@Id, @PlayerId, @NationalityId, @ClubId, @LeagueId, @VersionId, @PositionId, @AcceleRateId, 
-        //                   @OverallRating, @DefWR, @AttWR, @Link, @Foot, @Height, @Weight, @WeakFoot)";
-
         var insertCardSql =
             @"INSERT INTO Card(Id, PlayerId, NationalityId, ClubId, LeagueId,VersionId, PositionId, AcceleRateId, 
                           OverallRating, DefWR, AttWR, Link, Foot, Height, Weight, WeakFoot, SkillMoves, Acceleration, 
@@ -503,14 +502,164 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
                             card.REF.HasValue ? card.REF.Value : DBNull.Value);
                         insertCommand.Parameters.AddWithValue("@SPD",
                             card.SPD.HasValue ? card.SPD.Value : DBNull.Value);
-                        // Print all parameter values before executing the command
-                        Console.WriteLine("Inserting card with the following parameters:");
-                        foreach (SqliteParameter parameter in insertCommand.Parameters)
-                        {
-                            Console.WriteLine($"{parameter.ParameterName} = {parameter.Value}");
-                        }
 
                         insertCommand.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    public void UpdateCardAltpos()
+    {
+        var insertSql = "INSERT INTO CardAltpos(CardId, AltposId) VALUES (@cardId, @altposId)";
+        var checkExistenceSql = "SELECT COUNT(*) FROM CardAltpos WHERE CardId = @cardId AND AltposId = @altposId";
+
+        try
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                foreach (var cardAltposList in playerCsvReader.ReadCardAltpos())
+                {
+                    foreach (var cardAltpos in cardAltposList)
+                    {
+                        var altposId = GetEntityId(connection, "Position", cardAltpos.Position.Name);
+                        
+                        using var checkCommand = new SqliteCommand(checkExistenceSql, connection);
+                        checkCommand.Parameters.AddWithValue("@cardId", cardAltpos.CardId);
+                        checkCommand.Parameters.AddWithValue("@altposId", altposId);
+
+                        var exists = (long)checkCommand.ExecuteScalar() > 0;
+
+                        if (!exists)
+                        {
+                            using var insertCommand = new SqliteCommand(insertSql, connection);
+                            insertCommand.Parameters.AddWithValue("@cardId", cardAltpos.CardId);
+                            insertCommand.Parameters.AddWithValue("@altposId", altposId);
+                            insertCommand.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    public void UpdateCardBodytype()
+    {
+        var insertSql = "INSERT INTO CardBodytype(CardId, BodytypeId) VALUES (@cardId, @bodytypeId)";
+        var checkExistenceSql = "SELECT COUNT(*) FROM CardBodytype WHERE CardId = @cardId AND BodytypeId = @bodytypeId";
+
+        try
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                foreach (var cardBodytypeList in playerCsvReader.ReadCardBodytype())
+                {
+                    foreach (var cardBodytype in cardBodytypeList)
+                    {
+                        var bodytypeId = GetEntityId(connection, "Bodytype", cardBodytype.Bodytype.Name);
+                        
+                        using var checkCommand = new SqliteCommand(checkExistenceSql, connection);
+                        checkCommand.Parameters.AddWithValue("@cardId", cardBodytype.CardId);
+                        checkCommand.Parameters.AddWithValue("@bodytypeId", bodytypeId);
+
+                        var exists = (long)checkCommand.ExecuteScalar() > 0;
+
+                        if (!exists)
+                        {
+                            using var insertCommand = new SqliteCommand(insertSql, connection);
+                            insertCommand.Parameters.AddWithValue("@cardId", cardBodytype.CardId);
+                            insertCommand.Parameters.AddWithValue("@bodytypeId", bodytypeId);
+                            insertCommand.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    public void UpdateCardPlaystyle()
+    {
+        var insertSql = "INSERT INTO CardPlaystyle(CardId, PlaystyleId) VALUES (@cardId, @playstyleId)";
+        var checkExistenceSql = "SELECT COUNT(*) FROM CardPlaystyle WHERE CardId = @cardId AND PlaystyleId = @playstyleId";
+
+        try
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                foreach (var cardPlaystyleList in playerCsvReader.ReadCardPlaystyle())
+                {
+                    foreach (var cardPlaystyle in cardPlaystyleList)
+                    {
+                        var playstyleId = GetEntityId(connection, "Playstyle", cardPlaystyle.Playstyle.Name);
+                        
+                        using var checkCommand = new SqliteCommand(checkExistenceSql, connection);
+                        checkCommand.Parameters.AddWithValue("@cardId", cardPlaystyle.CardId);
+                        checkCommand.Parameters.AddWithValue("@playstyleId", playstyleId);
+
+                        var exists = (long)checkCommand.ExecuteScalar() > 0;
+
+                        if (!exists)
+                        {
+                            using var insertCommand = new SqliteCommand(insertSql, connection);
+                            insertCommand.Parameters.AddWithValue("@cardId", cardPlaystyle.CardId);
+                            insertCommand.Parameters.AddWithValue("@playstyleId", playstyleId);
+                            insertCommand.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+    
+    public void UpdateCardPlaystylePlus()
+    {
+        var insertSql = "INSERT INTO CardPlaystylePlus(CardId, PlaystyleId) VALUES (@cardId, @playstylePlusId)";
+        var checkExistenceSql = "SELECT COUNT(*) FROM CardPlaystylePlus WHERE CardId = @cardId AND PlaystyleId = @playstylePlusId";
+
+        try
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                foreach (var cardPlaystylePlusList in playerCsvReader.ReadCardPlaystylePlus())
+                {
+                    foreach (var cardPlaystylePlus in cardPlaystylePlusList)
+                    {
+                        var playstylePlusId = GetEntityId(connection, "Playstyle", cardPlaystylePlus.Playstyle.Name);
+                        
+                        using var checkCommand = new SqliteCommand(checkExistenceSql, connection);
+                        checkCommand.Parameters.AddWithValue("@cardId", cardPlaystylePlus.CardId);
+                        checkCommand.Parameters.AddWithValue("@playstylePlusId", playstylePlusId);
+
+                        var exists = (long)checkCommand.ExecuteScalar() > 0;
+
+                        if (!exists)
+                        {
+                            using var insertCommand = new SqliteCommand(insertSql, connection);
+                            insertCommand.Parameters.AddWithValue("@cardId", cardPlaystylePlus.CardId);
+                            insertCommand.Parameters.AddWithValue("@playstylePlusId", playstylePlusId);
+                            insertCommand.ExecuteNonQuery();
+                        }
                     }
                 }
             }
@@ -529,18 +678,5 @@ public class PlayerCsvDbUpdate(string connectionString, IPlayerCsvReader playerC
 
         return (long?)selectCommand.ExecuteScalar();
     }
-
-    private long? EnsureEntityExists(SqliteConnection connection, string tableName, string name)
-    {
-        if (name == null) return null;
-
-        var entityId = GetEntityId(connection, tableName, name);
-        if (entityId.HasValue) return entityId;
-
-        var insertEntitySql = $"INSERT INTO {tableName}(Name) VALUES (@name); SELECT last_insert_rowid();";
-        using var insertCommand = new SqliteCommand(insertEntitySql, connection);
-        insertCommand.Parameters.AddWithValue("@name", name);
-
-        return (long?)insertCommand.ExecuteScalar();
-    }
+    
 }

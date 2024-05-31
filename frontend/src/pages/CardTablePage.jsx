@@ -2,7 +2,6 @@
 import DataTable from "react-data-table-component";
 import {Loader} from "../components/Loader/Loader";
 import {cardColumns} from "../utils/tables/cardColumns";
-import {ExpandedPlayer} from "../components/ExpandedPlayer";
 import {ExpandedCard} from "../components/ExpandedCard";
 
 const API_ENDPOINT = "https://localhost:7298/api/Card/all";
