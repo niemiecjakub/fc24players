@@ -1,7 +1,7 @@
 ﻿import {useEffect, useState} from "react";
 import DataTable from "react-data-table-component";
 import {Loader} from "../components/Loader/Loader";
-import {cardColumns} from "../utils/tables/cardColumns";
+import {cardColumns, cardTableStyles} from "../utils/tables/cardColumns";
 import {ExpandedCard} from "../components/ExpandedCard";
 
 const API_ENDPOINT = "https://localhost:7298/api/Card/all";
@@ -35,9 +35,11 @@ export const CardTablePage = () => {
                 pagination
                 progressPending={isLoading}
                 progressComponent={<Loader />}
-                striped
+                customStyles={cardTableStyles}
                 expandableRows
                 expandableRowsComponent={ExpandedCard}
+                highlightOnHover
+                pointerOnHover
             />
         </div>
     )

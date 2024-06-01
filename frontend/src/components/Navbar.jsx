@@ -2,6 +2,7 @@
 import {Button} from "./Button";
 import {SearchBar} from "./SearchBar";
 import {FlexContainer} from "./FlexContainer";
+import {Divider} from "./Card/Divider";
 
 export const Navbar = () => {
     const navigate = useNavigate()

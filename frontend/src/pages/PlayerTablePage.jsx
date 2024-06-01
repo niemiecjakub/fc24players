@@ -4,6 +4,7 @@ import {Filter} from "../components/Filter";
 import {playerColumns} from "../utils/tables/playerColumns";
 import {Loader} from "../components/Loader/Loader";
 import {ExpandedPlayer} from "../components/ExpandedPlayer";
+import {cardTableStyles} from "../utils/tables/cardColumns";
 
 const API_ENDPOINT = "https://localhost:7298/api/Player/all";
 
