@@ -118,7 +118,14 @@ public static class CardMapper
             Bodytype = card.CardBodytype.Select(cb => cb.Bodytype.Name).ToList(),
             AltPos = card.CardAltPos.Select(cap => cap.Altpos.Name).ToList(),
             Playstyle = card.CardPlaystyle.Select(cp => cp.Playstyle.Name).ToList(),
-            PlaystylePlus = card.CardPlayStylePlus.Select(cpp => cpp.Playstyle.Name).ToList()
+            PlaystylePlus = card.CardPlayStylePlus.Select(cpp => cpp.Playstyle.Name).ToList(),
+            Foot = card.Foot,
+            Height = card.Height,
+            AttWr = card.AttWr,
+            DefWr = card.DefWr,
+            SkillMoves = card.SkillMoves,
+            WeakFoot = card.WeakFoot,
+            AcceleRate = card.AcceleRate.Name
         };
     }
 

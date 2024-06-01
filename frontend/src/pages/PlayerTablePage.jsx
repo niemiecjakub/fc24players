@@ -18,7 +18,6 @@ export const PlayerTablePage = () => {
         const getPlayers = async () => {
             setIsLoading(true)
             const response = await fetch(API_ENDPOINT)
-            console.log(response)
             if (response.ok) {
                 const players = await response.json()
                 setPlayers(players)

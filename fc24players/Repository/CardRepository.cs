@@ -57,7 +57,9 @@ public class CardRepository(ApplicationDbContext context) : ICardRepository
 
     public async Task<Card> GetById(int id)
     {
-        return await context.Card.Include(c => c.Version)
+        return await context.Card
+            .Include(c => c.AcceleRate)
+            .Include(c => c.Version)
             .Include(c => c.Club)
             .Include(c => c.League)
             .Include(c => c.Position)

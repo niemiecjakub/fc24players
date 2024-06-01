@@ -22,7 +22,7 @@ export const CardTablePage = () => {
 
         getCards()
     }, []);
-console.log(cards)
+
     return (
         <div>
             <h2 className="text-xl font-bold">Cards page</h2>

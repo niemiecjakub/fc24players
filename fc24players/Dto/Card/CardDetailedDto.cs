@@ -5,6 +5,13 @@ namespace fc24players.Dto.Card;
 public class CardDetailedDto : CardDto
 {
     public int? Age  { get; set; }
+    public int? SkillMoves { get; set; }
+    public  int? WeakFoot{ get; set; }
+    public  int? Height{ get; set; }
+    public string? AttWr { get; set; }
+    public string? DefWr{ get; set; }
+    public  string? Foot{ get; set; }
+    public string? AcceleRate { get; set; }
     public PacStatsDto? PacStats { get; set; }
     public ShoStatsDto? ShoStats { get; set; }
     public PasStatsDto? PasStats { get; set; }

@@ -6,7 +6,7 @@ import {CardStats} from "./Card/CardStats";
 import {CardPlaystyles} from "./Card/CardPlaystyles";
 
 const API_ENDPOINT = "https://localhost:7298/api/Card/";
-export const ExpandedCard = ({data: {id}}) => {
+export const ExpandedCard = ({data : {id}}) => {
     const [cardData, setCardData] = useState()
     const [isLoading, setIsLoading] = useState(false);
 
@@ -31,7 +31,7 @@ export const ExpandedCard = ({data: {id}}) => {
                     <CardDetails/>
                     <Divider width={100}/>
                     <CardStats card={cardData}/>
-                    <CardPlaystyles/>
+                    <CardPlaystyles card={cardData}/>
                 </div>
             }
         </>

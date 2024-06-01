@@ -1,26 +1,30 @@
 ﻿import {Playstyle} from "./Playstyle";
 
-export const CardPlaystyles = ({card}) => {
-    console.log(card.playstyle)
-    console.log(card.playstylePlus)
+const toAssetName = (value) => {
+    if (value == "Whipped Pass") {
+        return "whippedcrosser";
+    }
+    return  value.replaceAll(' ', '').toLowerCase();
+}
+export const CardPlaystyles = ({playstyles, playstylesPlus}) => {
     return (
-        <div className="flex ">
+        <div className="flex mt-2">
             {
-                card.playstylePlus.length > 0 && 
+                playstylesPlus.length > 0 && 
                 <div className="flex-col pr-8">
-                    Playstyles+
-                    
+                    <span className="font-bold text-white text-xl">Playstyles+</span>
                     <div className="flex">
-                        {card.playstylePlus && card.playstylePlus.map((playstyle, i) => <Playstyle playstyle={playstyle.toLowerCase()} plus={true}/>)}
+                        {playstylesPlus && playstylesPlus.map((playstyle, i) => <Playstyle playstyle={playstyle} asset={toAssetName(playstyle)} plus={true}/>)}
                     </div>
                 </div>
             }
             {
-                card.playstyle.length > 0 &&
+                playstyles.length > 0 &&
                 <div className="flex-col">
-                    Playstyles
+                    <span className="font-bold text-white text-xl">Playstyles</span>
                     <div className="flex">
-                        {card.playstyle.map((playstyle, i) => <Playstyle playstyle={playstyle.toLowerCase()} plus={false}/>)}
+                        {playstyles.map((playstyle, i) => <Playstyle playstyle={playstyle} asset={toAssetName(playstyle)}
+                                                                         plus={false}/>)}
                     </div>
                 </div>
             }

@@ -12,7 +12,6 @@ export const CardStats = ({
                     <HeadlineStat name="DIV" value={div}>
                         <IndividualStat name="GK. Diving" value={gkStats.gkDiving}/>
                     </HeadlineStat>
-                    
                     <HeadlineStat name="HAN" value={han}>
                         <IndividualStat name="GK. Handling" value={gkStats.gkHandling}/>
                     </HeadlineStat>
