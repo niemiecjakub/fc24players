@@ -25,7 +25,9 @@ export const CardTablePage = () => {
 
     return (
         <div>
-            <h2 className="text-xl font-bold">Cards page</h2>
+            <div className="m-5">
+                <span className="text-5xl font-bold bg-fc24-accent">FC 24 CARDS</span>
+            </div>
             <DataTable
                 columns={cardColumns}
                 data={cards}

@@ -1,8 +1,8 @@
 ﻿export const CardDetailItem = ({name, value}) => {
     return(
-        <div className="flex flex-col">
-            <p className="text-2xl font-bold text-white">{value}</p>
-            <p className="text-md">{name}</p>
+        <div className="flex flex-col text-white">
+            <p className="text-2xl font-extrabold">{value}</p>
+            <p className="text-md font-extralight">{name}</p>
         </div>
     )
 }

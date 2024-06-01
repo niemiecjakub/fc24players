@@ -4,5 +4,5 @@ namespace fc24players.Dtos;
 
 public class PlayerDetailedDto : PlayerDto
 {
-    public ICollection<CardDetailedDto> Cards { get; set; }
+    public ICollection<CardDto> Cards { get; set; }
 }

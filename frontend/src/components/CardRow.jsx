@@ -1,7 +1,9 @@
-﻿export const CardRow = ({card}) => {
+﻿import {CardDetailItem} from "./Card/CardDetailItem";
+
+export const CardRow = ({card}) => {
     return(
         <div className="flex">
-            <p>placeholder</p>
+            Card details
             {/*<CardDetailItem name="Skill Moves" value={sho}/>*/}
             {/*<CardDetailItem name="Skill Moves" value={phy}/>*/}
             {/*<CardDetailItem name="Skill Moves" value={def}/>*/}

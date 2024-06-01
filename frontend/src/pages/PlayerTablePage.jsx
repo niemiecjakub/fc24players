@@ -65,7 +65,9 @@ export const PlayerTablePage = () => {
 
     return (
         <div>
-            <h2 className="text-xl font-bold">Player page</h2>
+            <div className="m-5">
+                <span className="text-5xl font-bold bg-fc24-accent">FC 24 PLAYERS</span>
+            </div>
             <DataTable
                 columns={playerColumns}
                 data={filteredPlayers}

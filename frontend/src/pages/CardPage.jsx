@@ -38,14 +38,14 @@ export const CardPage = () => {
                 {isLoading ? (<Loader />) : (
                     <>
                         {card ? (
-                                <div className="flex flex-col">
+                                <div className="flex flex-col bg-fc24-200 rounded-lg px-4 py-2">
                                     <CardTitle card={card} />
                                     <div className="flex">
                                         <div className="flex flex-col">
                                             <CardImage id={id} className="h-96"/>
                                             <CardAltposList positions={card.altPos} />
                                         </div>
-                                        <div className="flex flex-col h-full bg-gray-400 p-2 rounded-2xl">
+                                        <div className="flex flex-col h-full p-2">
                                             <CardDetails card={card}/>
                                             <Divider width={100}/>
                                             <CardStats card={card}/>

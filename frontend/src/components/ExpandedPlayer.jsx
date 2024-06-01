@@ -26,6 +26,7 @@ export const ExpandedPlayer = ({data: {id}}) => {
     const handleCardNavigate = (cardId) => {
         navigate(`/card/${cardId}`);
     }
+
     return isLoading ? <Loader/> : (
         <>
             {playerData && 

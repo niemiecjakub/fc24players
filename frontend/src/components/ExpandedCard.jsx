@@ -9,7 +9,7 @@ const API_ENDPOINT = "https://localhost:7298/api/Card/";
 export const ExpandedCard = ({data : {id}}) => {
     const [cardData, setCardData] = useState()
     const [isLoading, setIsLoading] = useState(false);
-
+    
     useEffect(() => {
         const getCardData = async () => {
             setIsLoading(true)
@@ -27,11 +27,11 @@ export const ExpandedCard = ({data : {id}}) => {
     return isLoading ? <Loader/> : (
         <>
             {cardData &&
-                <div className="flex flex-col bg-gray-600 h-full p-2">
-                    <CardDetails/>
+                <div className="flex flex-col bg-fc24-200 rounded-lg h-full p-2 my-2">
+                    <CardDetails card={cardData}/>
                     <Divider width={100}/>
                     <CardStats card={cardData}/>
-                    <CardPlaystyles card={cardData}/>
+                    <CardPlaystyles playstyles={cardData.playstyle} playstylesPlus={cardData.playstylePlus}/>
                 </div>
             }
         </>

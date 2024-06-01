@@ -22,7 +22,7 @@ public static class PlayerMapper
             Id = player.Id,
             Name = player.Name,
             Nationality = player.Nationality.Name,
-            Cards = player.Cards.Select(c => c.ToCardDetailedDto()).ToList()
+            Cards = player.Cards.Select(c => c.ToCardDto()).ToList()
         };
     }
 }
