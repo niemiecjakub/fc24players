@@ -39,7 +39,7 @@ export const CardTablePage = () => {
                 expandableRows
                 expandableRowsComponent={ExpandedCard}
                 highlightOnHover
-                pointerOnHover
+                persistTableHead={true}
             />
         </div>
     )

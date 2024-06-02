@@ -1,5 +1,6 @@
 ﻿import {HeadlineStatBadge} from "../../components/Card/HeadlineStatBadge";
 import {PositionBadge} from "../../components/Card/PositionBadge";
+import {OverallBadge} from "../../components/Card/OverallBadge";
 
 export const cardColumns = [
     {
@@ -32,6 +33,7 @@ export const cardColumns = [
         name: 'POSITION',
         selector: row => row.position,
         sortable: true,
+        center: true,
         cell: row => <PositionBadge position={row.position}/>
     },
     {
@@ -39,19 +41,23 @@ export const cardColumns = [
         name: 'OVERALL',
         selector: row => row.overallRating,
         sortable: true,
+        center: true,
+        cell: row => <OverallBadge value={row.overallRating}/>,
     },
     {
         id: 'PAC',
         name: 'PAC',
         selector: row => row.pac,
         sortable: true,
-        cell: row => <HeadlineStatBadge value={row.pac}/>
+        center: true,
+        cell: row => <HeadlineStatBadge value={row.pac}/>,
     },
     {
         id: 'SHO',
         name: 'SHO',
         selector: row => row.sho,
         sortable: true,
+        center: true,
         cell: row => <HeadlineStatBadge value={row.sho}/>,
     },
     {
@@ -59,13 +65,15 @@ export const cardColumns = [
         name: 'PAS',
         selector: row => row.pas,
         sortable: true,
-        cell: row => <HeadlineStatBadge value={row.pas}/>
+        center: true,
+        cell: row => <HeadlineStatBadge value={row.pas}/>,
     },
     {
         id: 'DRI',
         name: 'DRI',
         selector: row => row.dri,
         sortable: true,
+        center: true,
         cell: row => <HeadlineStatBadge value={row.dri}/>
     },
     {
@@ -73,6 +81,7 @@ export const cardColumns = [
         name: 'DEF',
         selector: row => row.def,
         sortable: true,
+        center: true,
         cell: row => <HeadlineStatBadge value={row.def}/>
     },
     {
@@ -80,6 +89,7 @@ export const cardColumns = [
         name: 'PHY',
         selector: row => row.phy,
         sortable: true,
+        center: true,
         cell: row => <HeadlineStatBadge value={row.phy}/>
     },
 ];
@@ -87,7 +97,9 @@ export const cardColumns = [
 export const cardTableStyles = {
     table:{
         style:{
-            color: "#FFFFFF"
+            color: "#FFFFFF",
+            overflowX: 'hidden',
+            overflowY: 'hidden'
         }
     },
     headRow:{
@@ -121,6 +133,15 @@ export const cardTableStyles = {
         style:{
             backgroundColor: "#000000",
         }
+    },
+    pagination:{
+        style:{
+            backgroundColor: "#000000",
+            color: "#6f6f6a"
+        },
+        pageButtonsStyle: {
+            fill: "#10f469",
+        },
     }
 };
 
