@@ -40,8 +40,8 @@ public static class CardMapper
         {
             Id = card.Id,
             Player = card.Player.ToPlayerDto(),
-            Version = card.Version.Name,
-            Club = card.Club.Name,
+            Version = card.Version?.Name,
+            Club = card.Club?.Name,
             League = card.League.Name,
             Position = card.Position.Name,
             Age = card.Age,

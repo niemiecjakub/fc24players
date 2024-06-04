@@ -1,6 +1,7 @@
 ﻿import {HeadlineStatBadge} from "../../components/Card/HeadlineStatBadge";
 import {PositionBadge} from "../../components/Card/PositionBadge";
 import {OverallBadge} from "../../components/Card/OverallBadge";
+import ReactCountryFlag from "react-country-flag";
 
 export const cardColumns = [
     {
@@ -21,6 +22,13 @@ export const cardColumns = [
         name: 'NATIONALITY',
         selector: row => row.player.nationality,
         sortable: true,
+        center: true,
+        cell: row => <ReactCountryFlag countryCode={row.player.nationalityCode} svg
+            style={{
+                width: '3em',
+                height: '3em',
+            }}
+        />
     },
     {
         id: 'Club',

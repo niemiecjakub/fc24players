@@ -11,7 +11,8 @@ public static class PlayerMapper
         {
             Id = player.Id,
             Name = player.Name,
-            Nationality = player.Nationality.Name
+            Nationality = player.Nationality.Name,
+            NationalityCode = player.Nationality.Code
         };
     }
     
@@ -22,6 +23,7 @@ public static class PlayerMapper
             Id = player.Id,
             Name = player.Name,
             Nationality = player.Nationality.Name,
+            NationalityCode = player.Nationality.Code,
             Cards = player.Cards.Select(c => c.ToCardDto()).ToList()
         };
     }

@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-using System.Net.Mime;
-using fc24players.Models;
+﻿using fc24players.Models;
 using Microsoft.EntityFrameworkCore;
 using Version = fc24players.Models.Version;
 

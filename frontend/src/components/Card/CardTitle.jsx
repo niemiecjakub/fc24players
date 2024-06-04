@@ -1,4 +1,6 @@
-﻿export const CardTitle = ({card}) => {
+﻿import ReactCountryFlag from "react-country-flag";
+
+export const CardTitle = ({card}) => {
     return (
         <>
             <div className="flex divide-x-2 divide-fc24-accent my-3 items-center text-white">
@@ -10,7 +12,12 @@
                 </div>
             </div>
         <div className="flex text-white">
-            <p>{card.player.nationality}</p>
+            <ReactCountryFlag countryCode={card.player.nationalityCode} svg
+                              style={{
+                                  width: '3em',
+                                  height: '3em',
+                              }}
+            />
             <p>{card.club}</p>
             <p>{card.league}</p>
         </div>
