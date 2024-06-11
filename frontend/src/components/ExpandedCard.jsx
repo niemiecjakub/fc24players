@@ -4,8 +4,8 @@ import {CardDetails} from "./Card/CardDetails";
 import {Divider} from "./Card/Divider";
 import {CardStats} from "./Card/CardStats";
 import {CardPlaystyles} from "./Card/CardPlaystyles";
+import {baseUrl} from "../services/api";
 
-const API_ENDPOINT = "https://localhost:7298/api/Card/";
 export const ExpandedCard = ({data : {id}}) => {
     const [cardData, setCardData] = useState()
     const [isLoading, setIsLoading] = useState(false);
@@ -13,7 +13,7 @@ export const ExpandedCard = ({data : {id}}) => {
     useEffect(() => {
         const getCardData = async () => {
             setIsLoading(true)
-            const response = await fetch(API_ENDPOINT + id)
+            const response = await fetch(`${baseUrl}/Card/${id}`)
             if (response.ok) {
                 const cardData = await response.json()
                 setCardData(cardData)

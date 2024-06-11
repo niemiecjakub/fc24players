@@ -11,8 +11,7 @@ import {CardPlaystyles} from "../components/Card/CardPlaystyles";
 import {toRadarChartData} from "../utils/chart";
 import {StatsChart} from "../components/Card/StatsChart";
 import {CardAltposList} from "../components/Card/CardAltposList";
-
-const API_ENDPOINT = "https://localhost:7298/api/Card/";
+import {baseUrl} from "../services/api";
 
 export const CardPage = () => {
     const [card, setCard] = useState()
@@ -22,7 +21,7 @@ export const CardPage = () => {
     useEffect(() => {
         const getCard = async () => {
             setIsLoading(true)
-            const response = await fetch(API_ENDPOINT + id)
+            const response = await fetch(`${baseUrl}/Card/${id}`)
             if (response.ok) {
                 const cards = await response.json()
                 setCard(cards)
@@ -45,6 +44,9 @@ export const CardPage = () => {
                                         <div className="flex flex-col">
                                             <CardImage id={id} className="h-96"/>
                                             <CardAltposList positions={card.altPos} />
+                                            <div>
+                                                <img src={`/logos/${card.club}.svg`} />
+                                            </div>
                                         </div>
                                         <div className="flex flex-col h-full p-2">
                                             <CardDetails card={card}/>

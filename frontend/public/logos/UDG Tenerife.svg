@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="750" height="500">
+  <path style="opacity:1;fill:#072357;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.8816328;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" d="M0 0h750v500H0z"/>
+  <path d="M0 73.355923 280.74866 250 0 426.64408V500h71.910511L375 309.2997 678.08949 500H750v-73.35592L469.25134 250 750 73.355923V0h-71.91051L375 190.7003 71.910511 0H0v73.355923z" style="fill:#fff"/>
+</svg>

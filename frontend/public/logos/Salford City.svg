@@ -1,0 +1,35 @@
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="Layer_1" data-name="Layer 1" viewBox="0 0 436.70001 700.00002" version="1.1" inkscape:version="0.91 r13725" sodipodi:docname="Logo Salford City FC.svg" width="436.70001" height="700">
+  <metadata id="metadata27">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title>logo</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1440" inkscape:window-height="788" id="namedview25" showgrid="false" inkscape:zoom="0.62167154" inkscape:cx="99.275002" inkscape:cy="287.80531" inkscape:window-x="0" inkscape:window-y="1" inkscape:window-maximized="1" inkscape:current-layer="Layer_1"/>
+  <defs id="defs3">
+    <style id="style5">
+      .cls-1 {
+        fill: #e22418;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title id="title7">logo</title>
+  <g id="g4169" transform="matrix(0.99998134,0,0,1,0,381.76001)">
+    <polygon transform="matrix(2.1995978,0,0,2.1995978,0,-381.76)" class="cls-1" points="99.29,318.24 198.54,179.47 177.81,46.82 99.15,0 99.15,0 20.74,46.83 0,179.51 " id="polygon11" style="fill:#e22418"/>
+    <polygon transform="matrix(2.1995978,0,0,2.1995978,0,-381.76)" points="99.29,306.98 191.7,177.78 171.87,50.98 99.15,7.69 99.15,7.69 26.67,50.98 6.85,177.82 " id="polygon13"/>
+    <g id="g4162">
+      <polygon style="fill:#ffffff" id="polygon15" points="68.06,155.74 81.04,158.51 96.2,147.9 92.64,138.33 82.22,128.81 66.22,133.54 66.22,133.54 60.7,145.46 " class="cls-2" transform="matrix(2.1995978,0,0,2.1995978,0,-381.76)"/>
+      <polygon style="fill:#ffffff" id="polygon17" points="67.92,102.53 54.18,95.8 53.2,102.08 60.14,109.6 70.47,111.29 77.6,122.69 77.6,122.69 74.84,101.82 " class="cls-2" transform="matrix(2.1995978,0,0,2.1995978,0,-381.76)"/>
+      <polygon style="fill:#ffffff" id="polygon19" points="90.16,158.69 73.78,168.25 71.64,181.82 91.57,209.53 99.08,199.02 106.8,209.55 126.62,182.27 124.4,168.3 108.57,158.69 90.16,158.69 " class="cls-2" transform="matrix(2.1995978,0,0,2.1995978,0,-381.76)"/>
+      <polygon style="fill:#ffffff" id="polygon21" points="113.36,96.92 123.44,90.7 152.32,90.7 140.18,71.97 140.18,71.97 117.02,58.11 99.11,68.89 81.13,58.06 57.89,72.08 45.9,90.7 74.43,90.7 84.88,96.92 80.9,122.69 117.07,122.69 " class="cls-2" transform="matrix(2.1995978,0,0,2.1995978,0,-381.76)"/>
+      <polygon style="fill:#ffffff" id="polygon23" points="131.27,102.01 120.78,101.21 112.47,111.62 116.91,122.69 116.23,128.81 116.23,128.81 105.75,138.24 102.99,147.9 118.15,158.51 129.92,155.94 137.43,145.51 131.89,133.71 135.14,122.69 148.43,111.91 145.71,94.69 " class="cls-2" transform="matrix(2.1995978,0,0,2.1995978,0,-381.76)"/>
+    </g>
+  </g>
+</svg>

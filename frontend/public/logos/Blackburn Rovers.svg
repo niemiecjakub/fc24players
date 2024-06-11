@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1407" height="500">
+<!-- years are 10px wide, positions are 4px high in svg -->
+<path d="M0,0h1407v500H0z" fill="#fff"/>
+<path d="M745,437h30v-4h10v4h570v-4h10v4h40v-120H745z" fill="#666"/>
+<path d="M365,333h10v-8h20v8h270v8h410v8h30v-8h250v-4h10v4h40v-96H365" fill="#999"/>
+<path d="M85,133v48h10v12h10v4h40v16h70v16h140v16h720v8h30v-8h300v-168H85" fill="#b3b3b3"/>
+<path d="M45,117h30v8h10v8h60v8h70v8h140v8h680v-4h10v-4h30v8h30v-8h300v-80H45z" fill="#ccc"/>
+<path d="M315,69h40v380h-40zM555,69h70v380h-70z" fill="#fff"/>
+<path d="M60,69v48m50,16v-64m50,0v72m50,0v-72m50,0v80m50,0v-80m50,0v88m50,0v-88m50,0v88m50,0v-88m150,0v88m50,0v-88m50,0v88m50,0v-88m50,0v88m50,0v-88m50,0v88m50,0v-88m50,0v80m50,0v-80m50,0v80m50,0v-80m50,0v80m50,0v-80m50,0v80" fill="none" stroke="#000" stroke-width="1" stroke-opacity=".15"/>
+<path d="M60,117v332m50,0v-316m50,8v308m50,0v-308m50,8v300m50,0v-300m50,8v292m50,0v-292m50,0v292m50,0v-292m150,0v292m50,0v-292m50,0v292m50,0v-292m50,0v292m50,0v-292m50,0v292m50,0v-292m50-8v300m50,0v-300m50,0v300m50,0v-300m50,0v300m50,0v-300m50,0v300" fill="none" stroke="#fff" stroke-width="1" stroke-opacity=".3"/>
+<path d="M45,69h1360v380H45zM50,449.5v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7M38,71h7m-7,36h7m-7,40h7m-7,40h7m-7,40h7m-7,40h7m-7,40h7m-7,40h7m-7,40h7m-7,40h7" fill="none" stroke="#b3b3b3" stroke-width="1"/>
+<text transform="rotate(-90 54,485)" font-family="sans-serif" font-size="11">
+<tspan x="54" y="485">1889</tspan>
+<tspan x="54" y="505">1891</tspan>
+<tspan x="54" y="525">1893</tspan>
+<tspan x="54" y="545">1895</tspan>
+<tspan x="54" y="565">1897</tspan>
+<tspan x="54" y="585">1899</tspan>
+<tspan x="54" y="605">1901</tspan>
+<tspan x="54" y="625">1903</tspan>
+<tspan x="54" y="645">1905</tspan>
+<tspan x="54" y="665">1907</tspan>
+<tspan x="54" y="685">1909</tspan>
+<tspan x="54" y="705">1911</tspan>
+<tspan x="54" y="725">1913</tspan>
+<tspan x="54" y="745">1915</tspan>
+<tspan x="54" y="765">1917</tspan>
+<tspan x="54" y="785">1919</tspan>
+<tspan x="54" y="805">1921</tspan>
+<tspan x="54" y="825">1923</tspan>
+<tspan x="54" y="845">1925</tspan>
+<tspan x="54" y="865">1927</tspan>
+<tspan x="54" y="885">1929</tspan>
+<tspan x="54" y="905">1931</tspan>
+<tspan x="54" y="925">1933</tspan>
+<tspan x="54" y="945">1935</tspan>
+<tspan x="54" y="965">1937</tspan>
+<tspan x="54" y="985">1939</tspan>
+<tspan x="54" y="1005">1941</tspan>
+<tspan x="54" y="1025">1943</tspan>
+<tspan x="54" y="1045">1945</tspan>
+<tspan x="54" y="1065">1947</tspan>
+<tspan x="54" y="1085">1949</tspan>
+<tspan x="54" y="1105">1951</tspan>
+<tspan x="54" y="1125">1953</tspan>
+<tspan x="54" y="1145">1955</tspan>
+<tspan x="54" y="1165">1957</tspan>
+<tspan x="54" y="1185">1959</tspan>
+<tspan x="54" y="1205">1961</tspan>
+<tspan x="54" y="1225">1963</tspan>
+<tspan x="54" y="1245">1965</tspan>
+<tspan x="54" y="1265">1967</tspan>
+<tspan x="54" y="1285">1969</tspan>
+<tspan x="54" y="1305">1971</tspan>
+<tspan x="54" y="1325">1973</tspan>
+<tspan x="54" y="1345">1975</tspan>
+<tspan x="54" y="1365">1977</tspan>
+<tspan x="54" y="1385">1979</tspan>
+<tspan x="54" y="1405">1981</tspan>
+<tspan x="54" y="1425">1983</tspan>
+<tspan x="54" y="1445">1985</tspan>
+<tspan x="54" y="1465">1987</tspan>
+<tspan x="54" y="1485">1989</tspan>
+<tspan x="54" y="1505">1991</tspan>
+<tspan x="54" y="1525">1993</tspan>
+<tspan x="54" y="1545">1995</tspan>
+<tspan x="54" y="1565">1997</tspan>
+<tspan x="54" y="1585">1999</tspan>
+<tspan x="54" y="1605">2001</tspan>
+<tspan x="54" y="1625">2003</tspan>
+<tspan x="54" y="1645">2005</tspan>
+<tspan x="54" y="1665">2007</tspan>
+<tspan x="54" y="1685">2009</tspan>
+<tspan x="54" y="1705">2011</tspan>
+<tspan x="54" y="1725">2013</tspan>
+<tspan x="54" y="1745">2015</tspan>
+<tspan x="54" y="1765">2017</tspan>
+<tspan x="54" y="1785">2019</tspan>
+<tspan x="54" y="1805">2021</tspan>
+<tspan x="54" y="1825">2023</tspan>
+</text>
+<text x="703" y="38" font-family="sans-serif" font-size="30px" text-anchor="middle">Blackburn Rovers F.C. League Performance 1888–2024</text>
+<text transform="rotate(-90 30,259)" x="30" y="259" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="15px">Position</text>
+<text transform="rotate(-90 343,79)" font-family="sans-serif" font-weight="bold" text-anchor="end" font-size="20px">
+<tspan x="343" y="79">World War I</tspan>
+<tspan x="343" y="334">World War II</tspan>
+</text>
+<text font-family="sans-serif" font-weight="bold" font-size="20px" text-anchor="end" fill="#fff">
+<tspan x="1400" y="136">Tier 1</tspan>
+<tspan x="1400" y="232">Tier 2</tspan>
+<tspan x="1400" y="328">Tier 3</tspan>
+<tspan x="1394" y="424">Tier 4</tspan>
+</text>
+<g fill="none" stroke-linejoin="round">
+<path d="M50,83l10-4l10,12l10,12h10l10-20l10,4l10,12l10,24l10,4l10-36l10,32l10-20l10-20l10,48l10-4l10-8l10-16l10,12l10,8l10-40l10-4l10,36l10-44l10,16l10-16l10,8m50,68l10-36l10,16l10-4l10-24l10,32l10-16l10,24l10-24l10-20l10-4l10,16l10,24l10-4l10-28l10,28l10,28l10,48l10,16l10-60m80-24l10,16l10,60l10,8l10-40l10,32l10-20l10-24l10,12l10-8h10l10-8l10-56l10,28l10-36l10,32l10-20l10-16l10,12l10,48l10,16l10,16l10,44l10-44l10,52l10,44l10-28l10,40l10-48l10-32l10-12l10-28l10,68l10,8l10-80l10,24l10,4l10-20l10-4l10,56l10-28l10-32l10-4h10l10,56l10-44l10-96l10-8l10-4l10,24l10,24l10-28l10,52l10,48l10-36l10-48l10-16l10,36h10l10-36l10,16l10-12l10,32l10-20l10,20l10,16l10,72l10-36l10,4l10,24l10,28l10,16l10-44l10-16l10,16l10-28l10-4l10,48" id="BR"/>
+<use xlink:href="#BR" stroke-width="4" stroke="#06a" stroke-linecap="round"/>
+<use xlink:href="#BR" stroke-width="3" stroke="#fff" stroke-dasharray="7,7"/>
+</g>
+</svg>

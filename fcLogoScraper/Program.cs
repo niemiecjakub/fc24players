@@ -1,7 +1,5 @@
 ﻿
 using fcLogoScraper;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 public class Program
 {
@@ -20,25 +18,27 @@ public class Program
         
         string connectionString = $"Data Source={dbPath}";
         
-        
         string folderPath = @"C:\Users\komputerek\Desktop\fcLogos";
         ClubLogoScraper clubLogoScraper = new ClubLogoScraper(folderPath);
         ClubDbManager clubDbManager = new ClubDbManager(connectionString);
-        
+        ClubLogoScraperFacade clubLogoScraperFacade = new ClubLogoScraperFacade(clubLogoScraper);
         
         List<String> clubNames = clubDbManager.GetClubNames();
+        IEnumerable<String> alreadyScrapedClubs = Directory.GetFiles(folderPath).Select(path => Path.GetFileNameWithoutExtension(path));
+        clubNames = clubNames.Where(club => !alreadyScrapedClubs.Contains(club)).ToList();
+
         
-        foreach (string clubName in clubNames)
-        {
-            // String clubName = clubNames[1];
-            string wikipediaUrl = clubLogoScraper.GoogleSearchWikipediaResult(clubName);
-            Console.WriteLine(wikipediaUrl);
-            if (wikipediaUrl.Contains("wikipedia"))
-            {
-                clubLogoScraper.Scrape(wikipediaUrl, clubName);
-            }
-        }
+        Console.WriteLine(clubNames.Count);
         
-        
+        // foreach (string clubName in clubNames)
+        // {
+        //     Console.WriteLine(clubName);
+        //     clubLogoScraperFacade.Scrape(clubName);
+        //     // string wikipediaUrl = clubLogoScraper.GoogleSearchWikipediaResult(clubName);
+        //     // if (wikipediaUrl.Contains("wikipedia"))
+        //     // {
+        //     //     await clubLogoScraper.ScrapeLogoFullImage(wikipediaUrl, clubName);
+        //     // }
+        // }
     }
 }

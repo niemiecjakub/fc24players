@@ -4,9 +4,8 @@ import {Filter} from "../components/Filter";
 import {playerColumns} from "../utils/tables/playerColumns";
 import {Loader} from "../components/Loader/Loader";
 import {ExpandedPlayer} from "../components/ExpandedPlayer";
-import {cardTableStyles} from "../utils/tables/cardColumns";
-
-const API_ENDPOINT = "https://localhost:7298/api/Player/all";
+import {baseUrl} from "../services/api";
+import {tableStyles} from "../utils/tables/tableStyles";
 
 export const PlayerTablePage = () => {
     const [players, setPlayers] = useState([]);
@@ -18,7 +17,7 @@ export const PlayerTablePage = () => {
     useEffect(() => {
         const getPlayers = async () => {
             setIsLoading(true)
-            const response = await fetch(API_ENDPOINT)
+            const response = await fetch(`${baseUrl}/Player/all`)
             if (response.ok) {
                 const players = await response.json()
                 setPlayers(players)
@@ -82,8 +81,8 @@ export const PlayerTablePage = () => {
                 subHeaderComponent={subHeaderComponentMemo}
                 persistTableHead
                 progressPending={isLoading}
-                progressComponent={<Loader />}
-                striped
+                progressComponent={<Loader />}  
+                // customStyles={tableStyles}
             />
         </div>
     )

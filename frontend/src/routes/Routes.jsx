@@ -3,6 +3,7 @@ import {HomePage} from "../pages/HomePage";
 import {CardPage} from "../pages/CardPage";
 import {PlayerTablePage} from "../pages/PlayerTablePage";
 import {CardTablePage} from "../pages/CardTablePage";
+import {ClubTablePage} from "../pages/ClubTablePage";
 import App from "../App";
 
 export const router = createBrowserRouter([
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
                 path: "card/:id",
                 element: <CardPage />,
             },
+            {
+                path: "clubs",
+                element: <ClubTablePage />,
+            }
         ],
     },
 ]);

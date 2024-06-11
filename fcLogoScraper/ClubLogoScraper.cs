@@ -1,6 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.ObjectModel;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
 
 namespace fcLogoScraper;
 
@@ -30,79 +30,122 @@ public class ClubLogoScraper
             
         }
     }
+    
+    public void GoogleSearch(string query)
+    {
+        Driver.Navigate().GoToUrl($"https://www.google.com/search?q={query}");
+        HandleGooglePopup();
+    }
+    
+    public void WikipediaSearch(string query)
+    {
+        query = query.Replace(" ", "_");
+        Driver.Navigate().GoToUrl($"https://en.wikipedia.org/wiki/{query}");
+    }
 
-    public String GoogleSearchWikipediaResult(string clubName)
+
+    public bool SearchGoogleForWikipediaSvgResult(string clubName)
     {
         try
         {
-            String googleSearchQuery = $"{clubName} svg logo wikipedia";
-            Driver.Navigate().GoToUrl($"https://www.google.com/search?q={googleSearchQuery}");
-            HandleGooglePopup();
+            GoogleSearch($"{clubName} logo svg");
+            ReadOnlyCollection<IWebElement> webElements = Driver.FindElements(By.CssSelector("div div div div div a"));
+            IWebElement? webElement = webElements
+                .Where(webElement => !string.IsNullOrEmpty(webElement.GetAttribute("href")))
+                .FirstOrDefault(webElement => webElement.GetAttribute("href").Contains("wiki"));
 
-            Console.Out.WriteLine("HERE");
-            IWebElement webElements = Driver.FindElement(By.CssSelector("h3"));
-            webElements.Click();
-            return Driver.Url;
+            if (webElement == null)
+            {
+                return false;
+            }
+            webElement.Click();
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            IWebElement? imageWebElement = Driver.FindElement(By.CssSelector(".fullImageLink a"));
+            
+            if (imageWebElement == null)
+            {
+                return false;
+            }
+            
+            // string imageUrl = webElement.GetAttribute("href");
+            // Driver.Navigate().GoToUrl(imageUrl);
+            imageWebElement.Click();
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            
+            if (!Driver.PageSource.Contains("svg"))
+            {
+                return false;
+            }
+            
+            SaveSvg(clubName);
+            return true;
+            
         }
-        catch (Exception e)
+        catch (Exception ne)
         {
-            Console.WriteLine("An error occurred: " + e.Message);
-            return "";
+            Console.WriteLine($"error for {clubName}");
+            return false;
+        }
+    }
+
+
+    public bool SearchWikipediaPage(string clubName)
+    {
+        try
+        {
+            WikipediaSearch(clubName);
+            // ReadOnlyCollection<IWebElement> webElements = Driver.FindElements(By.CssSelector("a"));
+            // IWebElement? webElement = webElements.FirstOrDefault(webElement => webElement.GetAttribute("title").ToLower().Contains("logo"));
+            IWebElement? webElement = Driver.FindElement(By.CssSelector(".mw-file-description"));
+            
+            if (webElement != null)
+            {
+                string imageurl = webElement.GetAttribute("href");
+                Driver.Navigate().GoToUrl(imageurl);
+                Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+                IWebElement? imageWebElement = Driver.FindElement(By.CssSelector(".fullImageLink a"));
+        
+                if (imageWebElement == null)
+                {
+                    return false;
+                }
+        
+                string imageUrl = webElement.GetAttribute("href");
+                Driver.Navigate().GoToUrl(imageUrl);
+        
+                if (!Driver.PageSource.Contains("svg"))
+                {
+                    return false;
+                }
+        
+                SaveSvg(clubName);
+                return true;
+            }
+
+            return false;
+        }
+        catch (Exception ex)
+        {
+            return false;
         }
     }
     
-    public void Scrape(string url, string clubName)
+    private void SaveSvg(string fileName)
     {
-        try
-        {
-            Driver.Navigate().GoToUrl(url);
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            IWebElement webElement = Driver.FindElement(By.CssSelector(".fullImageLink a"));
-            string imageUrl = webElement.GetAttribute("href");
-            // await DownloadImageAsync(imageUrl,$"{clubName}.svg");
-
-            SaveSvg(imageUrl, clubName);
-        }
-        catch (Exception e)
-        {
-            
-        }
+        string filePath = Path.Combine(FolderPath, $"{fileName}.svg");
+        File.WriteAllText(filePath, Driver.PageSource);
+        Console.WriteLine($"saved image: {fileName}");
     }
-
+    
     private async Task DownloadImageAsync(string imageUrl, string fileName)
     {
         using (HttpClient client = new HttpClient())
         {
             HttpResponseMessage response = await client.GetAsync(imageUrl);
-            // response.EnsureSuccessStatusCode();
             byte[] imageBytes = await response.Content.ReadAsByteArrayAsync();
             string filePath = Path.Combine(FolderPath, fileName);
             Directory.CreateDirectory(FolderPath);
             await File.WriteAllBytesAsync(filePath, imageBytes);
         }
     }
-    
-    private void SaveSvg(string imageUrl, string fileName)
-    {
-       Driver.Navigate().GoToUrl(imageUrl);
-       String pageSource = Driver.PageSource;
-       WriteFile($"{fileName}.svg", pageSource);
-       
-    }
-
-    public void WriteFile(string fileName, string content)
-    {
-        string filePath = Path.Combine(FolderPath, fileName);
-
-        File.WriteAllText(filePath, content);
-        if (File.Exists(filePath))
-        {
-            Console.WriteLine("File created successfully.");
-        }
-        else
-        {
-            Console.WriteLine("Error: File creation failed.");
-        }
-    }
-
 }

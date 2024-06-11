@@ -1,10 +1,11 @@
 ﻿import {useEffect, useState} from "react";
 import DataTable from "react-data-table-component";
 import {Loader} from "../components/Loader/Loader";
-import {cardColumns, cardTableStyles} from "../utils/tables/cardColumns";
+import {cardColumns} from "../utils/tables/cardColumns";
 import {ExpandedCard} from "../components/ExpandedCard";
+import {baseUrl} from "../services/api";
+import {tableStyles} from "../utils/tables/tableStyles";
 
-const API_ENDPOINT = "https://localhost:7298/api/Card/all";
 export const CardTablePage = () => {
     const [cards, setCards] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +13,7 @@ export const CardTablePage = () => {
     useEffect(() => {
         const getCards = async () => {
             setIsLoading(true)
-            const response = await fetch(API_ENDPOINT)
+            const response = await fetch(`${baseUrl}/Card/all`)
             if (response.ok) {
                 const cards = await response.json()
                 setCards(cards)
@@ -35,7 +36,7 @@ export const CardTablePage = () => {
                 pagination
                 progressPending={isLoading}
                 progressComponent={<Loader />}
-                customStyles={cardTableStyles}
+                customStyles={tableStyles}
                 expandableRows
                 expandableRowsComponent={ExpandedCard}
                 highlightOnHover

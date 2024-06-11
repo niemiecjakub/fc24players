@@ -1,0 +1,35 @@
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="4.2117786mm" height="4.2121668mm" viewBox="0 0 14.923625 14.925" id="svg28595" version="1.1" inkscape:version="0.91 r13725" sodipodi:docname="Logo Tramway Bordeaux.svg">
+  <defs id="defs28597">
+    <clipPath clipPathUnits="userSpaceOnUse" id="clipPath23628">
+      <path d="m 687.01,156.97 11.939,0 0,11.94 -11.939,0 0,-11.94 z" id="path23630" inkscape:connector-curvature="0"/>
+    </clipPath>
+  </defs>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="5.6" inkscape:cx="-8.8959628" inkscape:cy="-2.3937206" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0" inkscape:window-width="1920" inkscape:window-height="1017" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1"/>
+  <metadata id="metadata28600">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g inkscape:label="Calque 1" inkscape:groupmode="layer" id="layer1" transform="translate(-306.82391,-413.47113)">
+    <g transform="matrix(1.25,0,0,-1.25,-551.93871,624.60863)" id="g28364">
+      <g clip-path="url(#clipPath23628)" id="g28366">
+        <g transform="translate(692.9811,157.2507)" id="g28368">
+          <path inkscape:connector-curvature="0" id="path28370" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none" d="m 0,0 c -3.137,0 -5.691,2.553 -5.691,5.69 0,3.137 2.554,5.689 5.691,5.689 3.135,0 5.688,-2.552 5.688,-5.689 C 5.688,2.553 3.135,0 0,0"/>
+        </g>
+        <g transform="translate(692.9811,168.9106)" id="g28372">
+          <path inkscape:connector-curvature="0" id="path28374" style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 0,0 c -3.298,0 -5.971,-2.674 -5.971,-5.969 0,-3.298 2.673,-5.972 5.971,-5.972 3.297,0 5.969,2.674 5.969,5.972 C 5.969,-2.674 3.297,0 0,0 m 0,-0.562 c 2.981,0 5.409,-2.425 5.409,-5.407 0,-2.983 -2.428,-5.41 -5.409,-5.41 -2.982,0 -5.41,2.427 -5.41,5.41 0,2.982 2.428,5.407 5.41,5.407"/>
+        </g>
+        <g transform="translate(692.2543,164.5589)" id="g28376">
+          <path inkscape:connector-curvature="0" id="path28378" style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 0,0 -2.008,0 c -0.039,0.198 -0.06,0.406 -0.06,0.623 0,0.204 0.021,0.405 0.06,0.603 l 5.468,0 C 3.498,1.028 3.519,0.827 3.519,0.623 3.519,0.406 3.498,0.198 3.46,0 l -2.008,0 0,-4.811 C 1.333,-4.823 1.215,-4.835 1.095,-4.846 0.977,-4.856 0.862,-4.86 0.75,-4.86 0.638,-4.86 0.518,-4.856 0.39,-4.851 0.261,-4.844 0.131,-4.83 0,-4.811 L 0,0 Z"/>
+        </g>
+        <g transform="translate(692.2543,164.5589)" id="g28380">
+          <path inkscape:connector-curvature="0" id="path28382" style="fill:none;stroke:#231f20;stroke-width:0.14;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="m 0,0 -2.008,0 c -0.039,0.198 -0.06,0.406 -0.06,0.623 0,0.204 0.021,0.405 0.06,0.603 l 5.468,0 C 3.498,1.028 3.519,0.827 3.519,0.623 3.519,0.406 3.498,0.198 3.46,0 l -2.008,0 0,-4.811 C 1.333,-4.823 1.215,-4.835 1.095,-4.846 0.977,-4.856 0.862,-4.86 0.75,-4.86 0.638,-4.86 0.518,-4.856 0.39,-4.851 0.261,-4.844 0.131,-4.83 0,-4.811 L 0,0 Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
