@@ -5,12 +5,6 @@ import ReactCountryFlag from "react-country-flag";
 
 export const cardColumns = [
     {
-        id: 'Id',
-        name: 'ID',
-        selector: row => row.id,
-        sortable: true,
-    },
-    {
         id: 'Name',
         name: 'PLAYER',
         selector: row => row.player.name,

@@ -44,9 +44,6 @@ export const CardPage = () => {
                                         <div className="flex flex-col">
                                             <CardImage id={id} className="h-96"/>
                                             <CardAltposList positions={card.altPos} />
-                                            <div>
-                                                <img src={`/logos/${card.club}.svg`} />
-                                            </div>
                                         </div>
                                         <div className="flex flex-col h-full p-2">
                                             <CardDetails card={card}/>

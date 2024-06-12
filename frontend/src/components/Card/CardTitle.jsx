@@ -18,7 +18,7 @@ export const CardTitle = ({card}) => {
                                   height: '3em',
                               }}
             />
-            <p>{card.club}</p>
+            <img src={`/logos/${card.club}.svg`} className="w-12 h-12"  alt="club logo"/>
             <p>{card.league}</p>
         </div>
         </>

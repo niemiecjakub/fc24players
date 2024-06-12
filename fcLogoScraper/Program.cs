@@ -26,19 +26,10 @@ public class Program
         List<String> clubNames = clubDbManager.GetClubNames();
         IEnumerable<String> alreadyScrapedClubs = Directory.GetFiles(folderPath).Select(path => Path.GetFileNameWithoutExtension(path));
         clubNames = clubNames.Where(club => !alreadyScrapedClubs.Contains(club)).ToList();
-
         
-        Console.WriteLine(clubNames.Count);
-        
-        // foreach (string clubName in clubNames)
-        // {
-        //     Console.WriteLine(clubName);
-        //     clubLogoScraperFacade.Scrape(clubName);
-        //     // string wikipediaUrl = clubLogoScraper.GoogleSearchWikipediaResult(clubName);
-        //     // if (wikipediaUrl.Contains("wikipedia"))
-        //     // {
-        //     //     await clubLogoScraper.ScrapeLogoFullImage(wikipediaUrl, clubName);
-        //     // }
-        // }
+        foreach (string clubName in clubNames)
+        {
+            clubLogoScraperFacade.Scrape(clubName);
+        }
     }
 }

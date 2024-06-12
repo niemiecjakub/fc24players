@@ -4,33 +4,33 @@ import {IndividualStat} from "./IndividualStat";
 export const CardStats = ({
     card: {position, pac, pacStats, sho, shoStats, pas, pasStats, dri, driStats, def, defStats, phy, phyStats, div, han, kic, ref, spd, pos, gkStats}}
 ) => {
+    console.log(position)
     return (
-        <div className="flex flex-col">
-            {
-                position === "GK" &&
-                <div className="flex flex-wrap pb-5">
-                    <HeadlineStat name="DIV" value={div}>
-                        <IndividualStat name="GK. Diving" value={gkStats.gkDiving}/>
-                    </HeadlineStat>
-                    <HeadlineStat name="HAN" value={han}>
-                        <IndividualStat name="GK. Handling" value={gkStats.gkHandling}/>
-                    </HeadlineStat>
-                    <HeadlineStat name="KIC" value={kic}>
-                        <IndividualStat name="GK. Kicking" value={gkStats.gkKicking}/>
-                    </HeadlineStat>
-                    <HeadlineStat name="REF" value={ref}>
-                        <IndividualStat name="GK. Reflexes" value={gkStats.gkReflexes}/>
-                    </HeadlineStat>
-                    <HeadlineStat name="SPD" value={spd}>
-                        <IndividualStat name="Acceleration" value={pacStats.acceleration}/>
-                        <IndividualStat name="Sprint Speed" value={pacStats.sprintSpeed}/>
-                    </HeadlineStat>
-                    <HeadlineStat name="POS" value={pos}>
-                        <IndividualStat name="GK. Positioning" value={gkStats.gkPos}/>
-                    </HeadlineStat>
-                </div>
-            }
-            <div className="flex flex-wrap">
+        <div className="flex justify-around w-full">
+                {
+                    position === "GK" &&
+                    <div className="flex flex-wrap pb-5">
+                        <HeadlineStat name="DIV" value={div}>
+                            <IndividualStat name="GK. Diving" value={gkStats.gkDiving}/>
+                        </HeadlineStat>
+                        <HeadlineStat name="HAN" value={han}>
+                            <IndividualStat name="GK. Handling" value={gkStats.gkHandling}/>
+                        </HeadlineStat>
+                        <HeadlineStat name="KIC" value={kic}>
+                            <IndividualStat name="GK. Kicking" value={gkStats.gkKicking}/>
+                        </HeadlineStat>
+                        <HeadlineStat name="REF" value={ref}>
+                            <IndividualStat name="GK. Reflexes" value={gkStats.gkReflexes}/>
+                        </HeadlineStat>
+                        <HeadlineStat name="SPD" value={spd}>
+                            <IndividualStat name="Acceleration" value={pacStats.acceleration}/>
+                            <IndividualStat name="Sprint Speed" value={pacStats.sprintSpeed}/>
+                        </HeadlineStat>
+                        <HeadlineStat name="POS" value={pos}>
+                            <IndividualStat name="GK. Positioning" value={gkStats.gkPos}/>
+                        </HeadlineStat>
+                    </div>
+                }
                 <HeadlineStat name="PAC" value={pac}>
                     <IndividualStat name="Acceleration" value={pacStats.acceleration}/>
                     <IndividualStat name="Sprint Speed" value={pacStats.sprintSpeed}/>
@@ -73,6 +73,5 @@ export const CardStats = ({
                     <IndividualStat name="Aggression" value={phyStats.aggression}/>
                 </HeadlineStat>
             </div>
-        </div>
     )
 }

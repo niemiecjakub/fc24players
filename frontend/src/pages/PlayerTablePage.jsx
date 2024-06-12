@@ -82,7 +82,7 @@ export const PlayerTablePage = () => {
                 persistTableHead
                 progressPending={isLoading}
                 progressComponent={<Loader />}  
-                // customStyles={tableStyles}
+                customStyles={tableStyles}
             />
         </div>
     )

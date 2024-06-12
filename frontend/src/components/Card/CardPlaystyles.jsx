@@ -1,7 +1,7 @@
 ﻿import {Playstyle} from "./Playstyle";
 
 const toAssetName = (value) => {
-    if (value == "Whipped Pass") {
+    if (value === "Whipped Pass") {
         return "whippedcrosser";
     }
     return  value.replaceAll(' ', '').toLowerCase();
@@ -12,7 +12,7 @@ export const CardPlaystyles = ({playstyles, playstylesPlus}) => {
             {
                 playstylesPlus.length > 0 && 
                 <div className="flex-col pr-8">
-                    <span className="font-bold text-white text-xl">Playstyles+</span>
+                    <div className="font-bold text-white text-xl text-left">Playstyles+</div>
                     <div className="flex">
                         {playstylesPlus && playstylesPlus.map((playstyle, i) => <Playstyle playstyle={playstyle} asset={toAssetName(playstyle)} plus={true}/>)}
                     </div>
@@ -21,10 +21,9 @@ export const CardPlaystyles = ({playstyles, playstylesPlus}) => {
             {
                 playstyles.length > 0 &&
                 <div className="flex-col">
-                    <span className="font-bold text-white text-xl">Playstyles</span>
+                    <div className="font-bold text-white text-xl text-left">Playstyles</div>
                     <div className="flex">
-                        {playstyles.map((playstyle, i) => <Playstyle playstyle={playstyle} asset={toAssetName(playstyle)}
-                                                                         plus={false}/>)}
+                        {playstyles.map((playstyle, i) => <Playstyle playstyle={playstyle} asset={toAssetName(playstyle)} plus={false}/>)}
                     </div>
                 </div>
             }

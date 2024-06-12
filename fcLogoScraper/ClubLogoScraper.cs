@@ -67,8 +67,6 @@ public class ClubLogoScraper
                 return false;
             }
             
-            // string imageUrl = webElement.GetAttribute("href");
-            // Driver.Navigate().GoToUrl(imageUrl);
             imageWebElement.Click();
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             
@@ -94,8 +92,6 @@ public class ClubLogoScraper
         try
         {
             WikipediaSearch(clubName);
-            // ReadOnlyCollection<IWebElement> webElements = Driver.FindElements(By.CssSelector("a"));
-            // IWebElement? webElement = webElements.FirstOrDefault(webElement => webElement.GetAttribute("title").ToLower().Contains("logo"));
             IWebElement? webElement = Driver.FindElement(By.CssSelector(".mw-file-description"));
             
             if (webElement != null)
