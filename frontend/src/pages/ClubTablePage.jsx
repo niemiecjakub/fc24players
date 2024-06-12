@@ -40,26 +40,22 @@ export const ClubTablePage = () => {
         }
         return true;
     });
-
-    const subHeaderComponentMemo = useMemo(() => {
-        const handleClubClear = () => {
-            if (clubFilterText) {
-                setResetPaginationToggle(!resetPaginationToggle);
-                setClubFilterText('');
-            }
-        };
-
-        return (
-            <div className="flex">
-                <Filter onFilter={e => setClubFilterText(e.target.value)} onClear={handleClubClear} filterText={clubFilterText} placeholder="Filter by name" className="mx-4"/>
-            </div>
-        );
-    }, [clubFilterText, resetPaginationToggle]);
+    
+    const handleClubClear = () => {
+        if (clubFilterText) {
+            setResetPaginationToggle(!resetPaginationToggle);
+            setClubFilterText('');
+        }
+    };
     
     return (
         <div>
             <div className="m-5">
                 <span className="text-5xl font-bold bg-fc24-accent">FC 24 CLUBS</span>
+            </div>
+            <div className="flex">
+                <Filter onFilter={e => setClubFilterText(e.target.value)} onClear={handleClubClear}
+                        filterText={clubFilterText} placeholder="Filter by name"/>
             </div>
             <DataTable
                 columns={clubColumns}
@@ -68,11 +64,9 @@ export const ClubTablePage = () => {
                 fixedHeader
                 pagination
                 paginationResetDefaultPage={resetPaginationToggle}
-                subHeader
-                subHeaderComponent={subHeaderComponentMemo}
                 persistTableHead
                 progressPending={isLoading}
-                progressComponent={<Loader />}
+                progressComponent={<Loader/>}
                 customStyles={tableStyles}
             />
         </div>

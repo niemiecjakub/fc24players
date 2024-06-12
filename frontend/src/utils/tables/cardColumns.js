@@ -9,7 +9,7 @@ export const cardColumns = [
         name: 'PLAYER',
         selector: row => row.player.name,
         sortable: true,
-        // cell: row => <div className="font-bold text-white">{row.player.name}</div>
+        // cell: row => <div className="text-white">{row.player.name}</div>
     },
     {
         id: 'Nationality',
@@ -29,7 +29,7 @@ export const cardColumns = [
         name: 'CLUB',
         selector: row => row.club,
         sortable: true,
-        cell: row => <img src={`/logos/${row.club}.svg`} className="h-16 w-16"/>,
+        cell: row => <img src={`/logos/${row.club}.svg`} className="h-16 w-16" alt="club logo"/>,
     },
     {
         id: 'Position',

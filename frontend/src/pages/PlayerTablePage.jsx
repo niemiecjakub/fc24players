@@ -41,32 +41,30 @@ export const PlayerTablePage = () => {
         }
         return true; 
     });
-    
-    const subHeaderComponentMemo = useMemo(() => {
-        const handleNameClear = () => {
-            if (nameFilterText) {
-                setResetPaginationToggle(!resetPaginationToggle);
-                setNameFilterText('');
-            }
-        };
-        const handleNationalityClear = () => {
-            if (nationalityFilterText) {
-                setResetPaginationToggle(!resetPaginationToggle);
-                setNationalityFilterText('');
-            }
-        };
-        return (
-            <div className="flex">
-                <Filter onFilter={e => setNameFilterText(e.target.value)} onClear={handleNameClear} filterText={nameFilterText} placeholder="Filter by name" className="mx-4"/>
-                <Filter onFilter={e => setNationalityFilterText(e.target.value)} onClear={handleNationalityClear} filterText={nationalityFilterText} placeholder="Filter by nationality"/>
-            </div>
-        );
-    }, [nameFilterText, nationalityFilterText, resetPaginationToggle]);
+
+    const handleNameClear = () => {
+        if (nameFilterText) {
+            setResetPaginationToggle(!resetPaginationToggle);
+            setNameFilterText('');
+        }
+    };
+    const handleNationalityClear = () => {
+        if (nationalityFilterText) {
+            setResetPaginationToggle(!resetPaginationToggle);
+            setNationalityFilterText('');
+        }
+    };
 
     return (
         <div>
             <div className="m-5">
                 <span className="text-5xl font-bold bg-fc24-accent">FC 24 PLAYERS</span>
+            </div>
+            <div className="flex">
+                <Filter onFilter={e => setNameFilterText(e.target.value)} onClear={handleNameClear}
+                        filterText={nameFilterText} placeholder="Filter by name" className="mr-4"/>
+                <Filter onFilter={e => setNationalityFilterText(e.target.value)} onClear={handleNationalityClear}
+                        filterText={nationalityFilterText} placeholder="Filter by nationality"/>
             </div>
             <DataTable
                 columns={playerColumns}
@@ -74,14 +72,12 @@ export const PlayerTablePage = () => {
                 defaultSortFieldId={1}
                 fixedHeader
                 pagination
-                paginationResetDefaultPage={resetPaginationToggle} 
-                expandableRows 
+                paginationResetDefaultPage={resetPaginationToggle}
+                expandableRows
                 expandableRowsComponent={ExpandedPlayer}
-                subHeader
-                subHeaderComponent={subHeaderComponentMemo}
                 persistTableHead
                 progressPending={isLoading}
-                progressComponent={<Loader />}  
+                progressComponent={<Loader/>}
                 customStyles={tableStyles}
             />
         </div>
