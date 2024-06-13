@@ -2,6 +2,7 @@
 import {PositionBadge} from "../../components/Card/PositionBadge";
 import {OverallBadge} from "../../components/Card/OverallBadge";
 import ReactCountryFlag from "react-country-flag";
+import {ClubLogo} from "../../components/ClubLogo";
 
 export const cardColumns = [
     {
@@ -29,7 +30,7 @@ export const cardColumns = [
         name: 'CLUB',
         selector: row => row.club,
         sortable: true,
-        cell: row => <img src={`/logos/${row.club}.svg`} className="h-16 w-16" alt="club logo"/>,
+        cell: row => <ClubLogo name={row.club} className="p-2" />,
     },
     {
         id: 'Position',
@@ -37,7 +38,7 @@ export const cardColumns = [
         selector: row => row.position,
         sortable: true,
         center: true,
-        cell: row => <PositionBadge position={row.position}/>
+        cell: row => <PositionBadge position={row.position} className="bg-fc24-100 text-xl p-1 w-full"/>
     },
     {
         id: 'Overall',

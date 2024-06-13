@@ -1,4 +1,6 @@
-﻿export const clubColumns = [
+﻿import {ClubLogo} from "../../components/ClubLogo";
+
+export const clubColumns = [
     {
         id: 'Name',
         name: 'CLUB',
@@ -11,7 +13,7 @@
         name: 'LOGO',
         selector: row => row.name,
         sortable: true,
-        cell: row => <img src={`/logos/${row.name}.svg`} className="h-16 w-16"/>,
+        cell: row => <ClubLogo name={row.name} />,
     },
 ];
 
