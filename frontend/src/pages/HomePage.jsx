@@ -4,24 +4,25 @@ import {CardImage} from "../components/Card/CardImage";
 import {useEffect, useState} from "react";
 import {baseUrl} from "../services/api";
 import {Loader} from "../components/Loader/Loader";
+import {InfiniteScroll} from "../components/InfiniteScroll";
 
 export const HomePage = () => {
-    const [ids, setIds] = useState([])
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        const getCards = async () => {
-            setIsLoading(true)
-            const response = await fetch(`${baseUrl}/Card/ids?PageSize=50&IsNextPage=true`)
-            if (response.ok) {
-                const ids = await response.json()
-                setIds(ids.data)
-            }
-            setIsLoading(false)
-        }
-
-        getCards()
-    }, []);
+    // const [ids, setIds] = useState([])
+    // const [isLoading, setIsLoading] = useState(false);
+    //
+    // useEffect(() => {
+    //     const getCards = async () => {
+    //         setIsLoading(true)
+    //         const response = await fetch(`${baseUrl}/Card/ids?PageSize=50&IsNextPage=true`)
+    //         if (response.ok) {
+    //             const ids = await response.json()
+    //             setIds(ids.data)
+    //         }
+    //         setIsLoading(false)
+    //     }
+    //
+    //     getCards()
+    // }, []);
 
     return (
         <FlexContainer>
@@ -29,11 +30,7 @@ export const HomePage = () => {
                 <Button content="Discover players"/>
                 <Button content="Discover cards"/>
                 <Button content="Discover clubs"/>
-                {isLoading ? <Loader/> : 
-                    <div className="flex flex-wrap">
-                        {ids.map((id, i) => <CardImage id={id} className="h-64"/>)}
-                    </div>
-                }
+                <InfiniteScroll />
             </div>
         </FlexContainer>
     )
