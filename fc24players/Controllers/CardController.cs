@@ -31,4 +31,12 @@ public class CardController(ICardRepository cardRepository) : Controller
         var cardDto = card.ToCardDetailedDto();
         return Ok(cardDto);
     }
+        
+    [HttpGet("ids")]
+    [ProducesResponseType(200, Type = typeof(Card))]
+    public async Task<IActionResult> GetCardIds([FromQuery] CursorPaginationQueryObject paginationQuery)
+    {
+        var cardIdPageDto = await cardRepository.GetIds(paginationQuery);
+        return Ok(cardIdPageDto);
+    }
 }

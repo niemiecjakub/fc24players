@@ -1,4 +1,5 @@
 ﻿using fc24players.Data;
+using fc24players.Dto.Card;
 using fc24players.Helpers;
 using fc24players.Interfaces;
 using fc24players.Models;
@@ -74,5 +75,54 @@ public class CardRepository(ApplicationDbContext context) : ICardRepository
             .Include(c => c.CardPlayStylePlus)
             .ThenInclude(cb => cb.Playstyle)
             .FirstOrDefaultAsync(c => c.Id == id);
+    }
+    
+    public async Task<CardIdPageDto> GetIds(CursorPaginationQueryObject paginationQuery)
+    {
+        IQueryable<Card> cards = context.Card.OrderBy(c => c.Id);
+        
+        int takeAmmount = paginationQuery.PageSize + 1;
+        if (paginationQuery.Cursor is not null)
+        {
+            if (paginationQuery.IsNextPage == true)
+            {
+                cards = cards.Where(c => c.Id > paginationQuery.Cursor);
+            }
+            else
+            {
+                cards = cards.Where(c => c.Id < paginationQuery.Cursor).OrderByDescending(c => c.Id);
+                takeAmmount = paginationQuery.PageSize;
+            }
+        }
+
+        cards = cards.Take(takeAmmount);
+        if (paginationQuery.IsNextPage == false && paginationQuery.Cursor is not null)
+        {
+            cards = cards.Reverse();
+        }
+
+        var cardIdsOnPage =  await cards.Include(c => c.Club).AsNoTracking().Select(c => c.Id).ToListAsync();
+        bool isFirstPage = !paginationQuery.Cursor.HasValue || (paginationQuery.Cursor.HasValue &&
+                                                                cardIdsOnPage.First() == context.Card.OrderBy(c => c.Id)
+                                                                    .First().Id);
+
+        bool hasNextPage = cardIdsOnPage.Count > paginationQuery.PageSize ||
+                           (paginationQuery.Cursor is not null && paginationQuery.IsNextPage == false);
+
+        if (cardIdsOnPage.Count > paginationQuery.PageSize)
+        {
+            cardIdsOnPage.RemoveAt(cardIdsOnPage.Count - 1);
+        }
+
+        int? nextId = hasNextPage ? cardIdsOnPage.Last() : null;
+        int? previousId = cardIdsOnPage.Count > 0 && !isFirstPage ? cardIdsOnPage.First() : null;
+
+        return new CardIdPageDto()
+        {
+            Data = cardIdsOnPage,
+            NextId = nextId,
+            PreviousId = previousId,
+            IsFirstPage = isFirstPage
+        };
     }
 }

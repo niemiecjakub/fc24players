@@ -32,7 +32,6 @@ export const CardPage = () => {
         getCard()
     }, [useLocation().pathname])
     
-            console.log(card)
     return (
             <FlexContainer>
                 {isLoading ? (<Loader />) : (
