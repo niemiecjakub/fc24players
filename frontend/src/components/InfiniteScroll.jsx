@@ -2,8 +2,11 @@
 import {Loader} from "./Loader/Loader";
 import {CardImage} from "./Card/CardImage";
 import {useCallback, useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+
 
 export const InfiniteScroll = () => {
+    const navigate = useNavigate();
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [cursor, setCursor] = useState(1);
@@ -17,9 +20,7 @@ export const InfiniteScroll = () => {
         const response = await fetch(`${baseUrl}/Card/ids?PageSize=${pageSize}&Cursor=${cursor}&IsNextPage=true`)
         if (response.ok) {
             const ids = await response.json()
-            console.log(ids.data)
             setItems(prevItems => [...prevItems, ...ids.data]);
-            console.log("fetching next")
             setCursor(ids.nextId);
         }
         setIsLoading(false)
@@ -56,7 +57,7 @@ export const InfiniteScroll = () => {
     return isLoading ? <Loader/> :
         (
             <div className="flex flex-wrap">
-                {items.map((id, i) => <CardImage id={id} className="h-64"/>)}
+                {items.map((id, i) => <CardImage id={id} className="h-64 cursor-pointer" onClick={() => navigate(`card/${id}`)}/>)}
             </div>
         );
 }

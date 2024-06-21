@@ -4,7 +4,6 @@ import {IndividualStat} from "./IndividualStat";
 export const CardStats = ({
     card: {position, pac, pacStats, sho, shoStats, pas, pasStats, dri, driStats, def, defStats, phy, phyStats, div, han, kic, ref, spd, pos, gkStats}}
 ) => {
-    console.log(position)
     return (
         <div className="flex justify-around w-full">
                 {

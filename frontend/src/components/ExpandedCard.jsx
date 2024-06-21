@@ -32,7 +32,7 @@ export const ExpandedCard = ({data : {id}}) => {
                     <CardDetails card={cardData}/>
                     <Divider width={100}/>
                     <div className="flex w-full">
-                        <CardImage id={id} className="h-64"/>
+                        <CardImage id={id} className="h-64 w-48"/>
                         <CardStats card={cardData}/>
                     </div>
                     <CardPlaystyles playstyles={cardData.playstyle} playstylesPlus={cardData.playstylePlus}/>
