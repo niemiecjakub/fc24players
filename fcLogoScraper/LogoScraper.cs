@@ -25,19 +25,19 @@ public class LogoScraper
                 googlePopup.Click();
             }
         }
-        catch (NoSuchElementException e)
+        catch (NoSuchElementException ex)
         {
             
         }
     }
-    
-    public void GoogleSearch(string query)
+
+    private void GoogleSearch(string query)
     {
         Driver.Navigate().GoToUrl($"https://www.google.com/search?q={query}");
         HandleGooglePopup();
     }
-    
-    public void WikipediaSearch(string query)
+
+    private void WikipediaSearch(string query)
     {
         query = query.Replace(" ", "_");
         Driver.Navigate().GoToUrl($"https://en.wikipedia.org/wiki/{query}");
@@ -79,7 +79,7 @@ public class LogoScraper
             return true;
             
         }
-        catch (Exception ne)
+        catch (Exception ex)
         {
             Console.WriteLine($"error for {clubName}");
             return false;

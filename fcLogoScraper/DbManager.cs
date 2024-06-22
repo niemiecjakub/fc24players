@@ -61,4 +61,25 @@ public class DbManager(string connectionString)
         }
         return leagueNames;
     }
+
+    public void UpdateClubInfo(ClubInfo clubInfo)
+    {
+        var updateSql = "UPDATE Club SET Code = @code WHERE Name = @name";
+
+        try
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                using var updateCommand = new SqliteCommand(updateSql, connection);
+                updateCommand.Parameters.AddWithValue("@name", clubInfo.ClubName);
+                updateCommand.Parameters.AddWithValue("@code", clubInfo.Code);
+                updateCommand.ExecuteNonQuery();
+            }
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
 }

@@ -20,22 +20,32 @@ public class Program
         
         // string folderPath = @"C:\Users\komputerek\Desktop\clubFcLogos";
         string folderPath = @"C:\Users\komputerek\Desktop\leagueFcLogos";
-        LogoScraper logoScraper = new LogoScraper(folderPath);
+        // LogoScraper logoScraper = new LogoScraper(folderPath);
         DbManager dbManager = new DbManager(connectionString);
-        LogoScraperFacade clubLogoScraperFacade = new LogoScraperFacade(logoScraper);
+        // LogoScraperFacade clubLogoScraperFacade = new LogoScraperFacade(logoScraper);
         
         // List<String> clubNames = dbManager.GetClubNames();
         // IEnumerable<String> alreadyScrapedClubs = Directory.GetFiles(folderPath).Select(path => Path.GetFileNameWithoutExtension(path));
         // clubNames = clubNames.Where(club => !alreadyScrapedClubs.Contains(club)).ToList();
-        // foreach (string clubName in leagueNames)
+        // foreach (string clubName in clubNames)
         // {
         //     clubLogoScraperFacade.Scrape(clubName);
         // }
         
-        List<String> leagueNames = dbManager.GetLeagueNames();
-        foreach (string leagueName in leagueNames)
-        {
-            clubLogoScraperFacade.Scrape(leagueName);
-        }
+        // List<String> leagueNames = dbManager.GetLeagueNames();
+        // foreach (string leagueName in leagueNames)
+        // {
+        //     clubLogoScraperFacade.Scrape(leagueName);
+        // }
+        
+        ClubInfoScraper clubInfoScraper = new ClubInfoScraper(dbManager);
+        List<String> clubNames = dbManager.GetClubNames();
+        string clubName = clubNames[1];
+        clubInfoScraper.Scrape(clubName);
+        // foreach (string clubName in clubNames)
+        // {
+        //     Console.WriteLine($"SEACHING CLUB: {clubName}");
+        //     clubInfoScraper.Scrape(clubName);
+        // }
     }
 }
