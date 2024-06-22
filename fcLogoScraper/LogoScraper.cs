@@ -4,12 +4,12 @@ using OpenQA.Selenium.Chrome;
 
 namespace fcLogoScraper;
 
-public class ClubLogoScraper
+public class LogoScraper
 {
     private string FolderPath;
     private IWebDriver Driver;
 
-    public ClubLogoScraper(string folderPath)
+    public LogoScraper(string folderPath)
     {
         FolderPath = folderPath;
         Driver = new ChromeDriver();
