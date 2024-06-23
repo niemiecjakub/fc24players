@@ -4,7 +4,7 @@ public class ClubInfoScraperFacade(ClubInfoScraper clubInfoScraper, DbManager db
 {
     public void Scrape(string clubName)
     {
-        ClubInfo clubInfo = clubInfoScraper.Scrape(clubName);
-        dbManager.UpdateClubInfo(clubInfo);
+        // ClubInfo clubInfo = clubInfoScraper.Scrape(clubName);
+        // dbManager.UpdateClubInfo(clubInfo);
     }
 }

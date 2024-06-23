@@ -38,15 +38,14 @@ public class Program
         // }
 
         ClubInfoScraper clubInfoScraper = new ClubInfoScraper();
-        List<String> clubNames = dbManager.GetClubNames();
+        // List<String> clubNames = dbManager.GetClubNames();
 
-        string clubName = "Cork City";
-        ClubInfo clubInfo = clubInfoScraper.Scrape(clubName);
-        dbManager.CreateManager(clubInfo.ManagerName, clubInfo.ManagerNationality, clubName);
-        dbManager.CreateLeagueClub(clubName, clubInfo.League);
-        dbManager.UpdateClubInfo(clubInfo);
-
-
+        // string clubName = "Cork City";
+        // ClubInfo clubInfo = clubInfoScraper.Scrape(clubName);
+        // dbManager.CreateManager(clubInfo.ManagerName, clubInfo.ManagerNationality, clubName);
+        // dbManager.CreateLeagueClub(clubName, clubInfo.League);
+        // dbManager.UpdateClubInfo(clubInfo);
+        
         // foreach (string clubName in clubNames)
         // {
         //     try
@@ -61,5 +60,28 @@ public class Program
         //         Console.WriteLine($"ERROR FOR {clubName}");
         //     }
         // }
+
+        List<int> clubIds = dbManager.GetClubIds();
+        foreach (int clubId in clubIds)
+        {
+            int leagueId = dbManager.GetLeagueIdFromClubId(clubId);
+            foreach (string playerName in dbManager.GetPlayersFromClub(clubId))
+            {
+                try
+                {
+                    ClubInfo clubInfo = clubInfoScraper.ScrapeClubFromPlayer(playerName);
+                    Console.WriteLine(clubInfo);
+                    dbManager.CreateManager(clubInfo.ManagerName, clubInfo.ManagerNationality, clubInfo.ClubName);
+                    // dbManager.CreateLeagueClub(clubInfo.ClubName, clubInfo.League);
+                    dbManager.UpdateClubInfo(clubInfo, clubId);
+                    dbManager.UpdateLeagueAltName(clubInfo.LeagueAltName, leagueId);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error for: {playerName}");
+                }
+            }
+        }
     }
 }
