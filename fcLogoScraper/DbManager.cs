@@ -232,10 +232,10 @@ public class DbManager(string connectionString)
     
     public long? GetEntityId(SqliteConnection connection, string tableName, string name)
     {
-        connection.Open();
         var selectEntitySql = $"SELECT Id FROM {tableName} WHERE Name = @name";
         using var selectCommand = new SqliteCommand(selectEntitySql, connection);
         selectCommand.Parameters.AddWithValue("@name", name);
+        connection.Open();
         return (long?)selectCommand.ExecuteScalar();
     }
 }

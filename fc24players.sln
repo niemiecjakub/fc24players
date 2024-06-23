@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fc24players", "fc24players\fc24players.csproj", "{51DEDB65-1A70-4153-BA4C-01B26D639670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fc24csvToDb", "fc24csvToDb\fc24csvToDb.csproj", "{9050121A-F97C-4276-9D42-516D8200E5FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbUpdate", "dbUpdate\dbUpdate.csproj", "{9050121A-F97C-4276-9D42-516D8200E5FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fcLogoScraper", "fcLogoScraper\fcLogoScraper.csproj", "{D6A7708D-A42F-4821-8F6F-55475E5730B2}"
 EndProject
