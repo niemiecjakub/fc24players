@@ -3,7 +3,7 @@ using Microsoft.Data.Sqlite;
 
 namespace dbUpdate.Db;
 
-public class DbUpdate(string connectionString)
+public class DbManager(string connectionString)
 {
     public List<String> GetClubNames()
     {
@@ -26,6 +26,28 @@ public class DbUpdate(string connectionString)
         }
         
         return clubNames;
+    }
+
+    public List<String> GetLeagueNames()
+    {
+        List<String> leagueNames = new List<string>();
+        var leagueSql = "SELECT Name FROM League";
+        
+        using (var connection = new SqliteConnection(connectionString))
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = leagueSql;
+            connection.Open();
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string clubName = reader.GetString(0);
+                    leagueNames.Add(clubName);
+                }
+            }
+        }
+        return leagueNames;
     }
     
     public void UpdateClubInfo(ClubInfo clubInfo)

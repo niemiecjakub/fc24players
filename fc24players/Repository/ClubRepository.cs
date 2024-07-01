@@ -7,9 +7,9 @@ namespace fc24players.Repository;
 
 public class ClubRepository(ApplicationDbContext context) : IClubRepository
 {
-    public async Task<ICollection<Club>> GetAll()
+    public async Task<ICollection<Club>>  GetAll()
     {
-        return await context.Club.ToListAsync();
+        return await context.Club.Include(c => c.Manager).ToListAsync();
     }
     
     public async Task<ICollection<string>> GetAllNames()

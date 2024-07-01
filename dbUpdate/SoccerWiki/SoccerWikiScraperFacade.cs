@@ -3,20 +3,12 @@ using dbUpdate.Models;
 
 namespace dbUpdate.SoccerWiki;
 
-public class SoccerWikiScraperFacade
+public class SoccerWikiScraperFacade(SoccerWikiScraper soccerWikiScraper, DbManager dbManager)
 {
-    private SoccerWikiScraper SoccerWikiScraper;
-    private DbUpdate DbUpdate;
-
-    public SoccerWikiScraperFacade(SoccerWikiScraper soccerWikiScraper, DbUpdate dbUpdate)
-    {
-        SoccerWikiScraper = soccerWikiScraper;
-        DbUpdate = dbUpdate;
-    }
     
     public void ScrapeAndUpdateAllClubs()
     {
-        List<string> clubNames = DbUpdate.GetClubNames();
+        List<string> clubNames = dbManager.GetClubNames();
         foreach (string clubName in clubNames)
         {
             ScrapeAndUpdateClub(clubName);
@@ -27,12 +19,12 @@ public class SoccerWikiScraperFacade
     {
         try
         {
-            ClubInfo clubInfo = SoccerWikiScraper.ScrapeClub(clubName);
+            ClubInfo clubInfo = soccerWikiScraper.ScrapeClub(clubName);
             if (clubInfo.ManagerName is not null)
             {
-                DbUpdate.CreateManager(clubInfo.ManagerName, clubInfo.ManagerNationality, clubInfo.ClubName);
+                dbManager.CreateManager(clubInfo.ManagerName, clubInfo.ManagerNationality, clubInfo.ClubName);
             }
-            DbUpdate.UpdateClubInfo(clubInfo);
+            dbManager.UpdateClubInfo(clubInfo);
             Console.WriteLine($"Successfully scraped: {clubName}");
         }
         catch(Exception e)

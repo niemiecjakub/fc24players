@@ -11,7 +11,7 @@ public class ApplicationDbContext : DbContext
     }
     
     public DbSet<Player> Player { get; set; }
-    public DbSet<Nationality?> Nationality { get; set; }
+    public DbSet<Nationality> Nationality { get; set; }
     public DbSet<AcceleRate> Accelerate { get; set; }
     public DbSet<Bodytype> Bodytype { get; set; }
     public DbSet<Card> Card { get; set; }
@@ -20,7 +20,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Playstyle> Playstyle { get; set; }
     public DbSet<Position> Position { get; set; }
     public DbSet<Version> Version { get; set; }
-    
+    public DbSet<Manager> Manager { get; set; }
     public DbSet<CardBodytype> CardBodytype { get; set; }
     public DbSet<CardAltpos> CardAltpos { get; set; }
     public DbSet<CardPlaystyle> CardPlaystyle { get; set; }
@@ -81,6 +81,11 @@ public class ApplicationDbContext : DbContext
             .HasOne(cb => cb.Playstyle)
             .WithMany(b => b.PlaystylePlusCards) 
             .HasForeignKey(cb => cb.PlaystyleId);
+        
+        modelBuilder.Entity<Club>()
+            .HasOne(c => c.Manager)
+            .WithOne(m => m.Club)
+            .HasForeignKey<Manager>("ClubId");
     }
     
 }

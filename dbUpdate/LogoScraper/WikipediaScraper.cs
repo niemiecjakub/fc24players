@@ -2,14 +2,14 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace fcLogoScraper;
+namespace dbUpdate.ClubLogoScraper;
 
-public class LogoScraper
+public class WikipediaScraper
 {
     private string FolderPath;
     private IWebDriver Driver;
 
-    public LogoScraper(string folderPath)
+    public WikipediaScraper(string folderPath)
     {
         FolderPath = folderPath;
         Driver = new ChromeDriver();

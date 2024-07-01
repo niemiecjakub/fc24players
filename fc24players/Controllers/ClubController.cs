@@ -1,4 +1,5 @@
 ﻿using fc24players.Interfaces;
+using fc24players.Mapper;
 using fc24players.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,8 @@ public class ClubController(IClubRepository clubRepository) : Controller
     public async Task<IActionResult> GetAll()
     {
         var clubs = await clubRepository.GetAll();
-        return Ok(clubs);
+        var clubDtos = clubs.Select(c => c.ToClubDto()).ToList();
+        return Ok(clubDtos);
     }
     
     [HttpGet("all/names")]
